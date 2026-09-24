@@ -145,7 +145,7 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-inline: calc(var(--s) * 0.171);
+  padding-inline: calc(var(--s) * 0.12);
 }
 
 .about__greeting {
