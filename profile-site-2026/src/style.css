@@ -2,6 +2,7 @@
   --cobalt: #1338b5;
   --ink: #fff;
   --rule: rgb(255 255 255 / 0.1);
+  --link-rest: rgb(255 255 255 / 0.3);
   /* Side of one square. 591px at the 1440 x 1024 Figma frame. */
   --s: min(41.04vw, 72svh);
 }
@@ -19,20 +20,62 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Links, after shedsgns.me: a faint rule sits at the foot of the line box and a solid one
+   draws across it from the left on hover. */
 a {
   color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-thickness: 1px;
+  text-decoration: none;
 }
 
-a:hover {
-  text-decoration-thickness: 2px;
+.link-label {
+  position: relative;
+  display: inline-block;
+}
+
+.link-label::before,
+.link-label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  pointer-events: none;
+}
+
+.link-label::before {
+  background: var(--link-rest);
+}
+
+.link-label::after {
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+a:hover .link-label::after,
+a:focus-visible .link-label::after {
+  transform: scaleX(1);
 }
 
 a:focus-visible {
-  outline: 1px solid currentColor;
-  outline-offset: 3px;
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-label::after {
+    transition: none;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* The page is one centered rectangle; overflow: clip trims the rules at the viewport edges. */
@@ -105,8 +148,8 @@ a:focus-visible {
   padding-inline: calc(var(--s) * 0.171);
 }
 
-.about__name {
-  font: inherit;
+.about__greeting {
+  opacity: 0.5;
 }
 
 .about__bio {
@@ -188,4 +231,8 @@ a:focus-visible {
   .portrait {
     grid-area: 2 / 1;
   }
+}
+
+.nowrap {
+  white-space: nowrap;
 }
