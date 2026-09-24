@@ -281,7 +281,10 @@ a:has(.link-logo) {
 }
 
 /* Slimmer marks read small at the default padding, so they get more of the tile. */
-.link-logo[src*='n26'],
 .link-logo[src*='ideo'] {
   padding: 2px;
+}
+
+.link-logo[src*='n26'] {
+  padding: 2.5px;
 }
