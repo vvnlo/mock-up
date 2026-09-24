@@ -161,17 +161,42 @@ a:focus-visible {
 }
 
 .about__work {
-  margin-top: 39px;
+  margin-top: 21px;
 }
 
 .about__contact {
-  margin-top: 18px;
+  margin-top: 21px;
 }
 
-.about__links {
+/* Copy-to-clipboard button after the email, after shedsgns.me. */
+.copy-button {
   display: inline-flex;
-  gap: 18px;
-  margin-left: 2px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgb(255 255 255 / 0.6);
+  line-height: 0;
+  vertical-align: -2px;
+  cursor: pointer;
+  transition: color 0.16s;
+}
+
+.copy-button:hover,
+.copy-button:focus-visible {
+  color: var(--ink);
+  outline: none;
+}
+
+.copy-button__check,
+.copy-button.is-copied .copy-button__copy {
+  display: none;
+}
+
+.copy-button.is-copied .copy-button__check {
+  display: block;
 }
 
 .portrait {
