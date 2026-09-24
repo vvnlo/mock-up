@@ -13,10 +13,11 @@
 
 :root[data-theme='light'] {
   --page: #f1edea;
-  --ink: #0f2d93;
-  --rule: rgb(19 56 181 / 0.16);
+  --ink: #1338b5;
+  /* Figma: cobalt at 50% in hard-light over parchment. */
+  --rule: #8aaaee;
   --link-rest: rgb(19 56 181 / 0.3);
-  --muted: rgb(15 45 147 / 0.55);
+  --muted: rgb(19 56 181 / 0.55);
   --tile-edge: rgb(19 56 181 / 0.16);
 }
 
@@ -230,6 +231,16 @@ a:focus-visible {
   top: 9.31%;
   width: 96.51%;
   height: auto;
+}
+
+/* Only the current theme's illustration shows when WebGL is unavailable. */
+.portrait__img--light,
+:root[data-theme='light'] .portrait__img--dark {
+  visibility: hidden;
+}
+
+:root[data-theme='light'] .portrait__img--light {
+  visibility: visible;
 }
 
 .portrait__fx {

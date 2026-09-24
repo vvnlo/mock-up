@@ -8,7 +8,9 @@ void main(){ gl_Position = vec4(aPos, 0.0, 1.0); }
 
 const COMMON = `
 precision highp float;
-uniform sampler2D uTex;
+uniform sampler2D uTex;       // dark-mode cut-out: drives every effect
+uniform sampler2D uPlainTex;  // light-mode line art: shown untreated on hover in light mode
+uniform float uLightMix;      // 0 = dark theme, 1 = light theme (eases during the switch)
 uniform vec2 uRes;      // canvas size, device px
 uniform vec4 uImg;      // illustration rect inside the square, top-left origin, in fractions of the square
 uniform vec2 uLuma;     // (lo, hi): stretches the all-blue illustration to a full 0..1 luminance range
@@ -23,17 +25,17 @@ vec2 imgAt(vec2 fc){
   vec2 box = vec2(fc.x / uRes.x, 1.0 - fc.y / uRes.y);
   return (box - uImg.xy) / uImg.zw;
 }
-bool inside(vec2 t){ return t.x >= 0.0 && t.x <= 1.0 && t.y >= 0.0 && t.y <= 1.0; }
+float inside(vec2 t){ return step(0.0, t.x) * step(t.x, 1.0) * step(0.0, t.y) * step(t.y, 1.0); }
+// Always sample, then mask. A texture read inside a branch leaves the mip level undefined at the
+// illustration's edge on real GPUs, which shows up as a faint 1px line along its top and left.
+vec4 texAt(sampler2D tex, vec2 t){ return texture2D(tex, clamp(t, 0.0, 1.0)) * inside(t); }
 float sampleLuma(vec2 fc){
-  vec2 t = imgAt(fc);
-  if (!inside(t)) return 1.0;                     // outside the illustration reads as background
-  vec4 c = texture2D(uTex, t);
+  vec4 c = texAt(uTex, imgAt(fc));              // outside the illustration reads as background
   float l = clamp((luma(c.rgb) - uLuma.x) / (uLuma.y - uLuma.x), 0.0, 1.0);
   return mix(1.0, l, c.a);
 }
 float coverageAt(vec2 fc){                        // 1 on the subject, 0 in the empty field
-  vec2 t = imgAt(fc);
-  return inside(t) ? texture2D(uTex, t).a : 0.0;
+  return texAt(uTex, imgAt(fc)).a;
 }
 float contrast(float l, float k){ return clamp((l - 0.5) * k + 0.5, 0.0, 1.0); }
 vec3 duotone(float l, vec3 sh, vec3 hi){ return mix(sh, hi, l); }
@@ -45,8 +47,9 @@ void main(){
   col += (hash(floor(gl_FragCoord.xy / (2.0 * uDpr)) + 19.19) - 0.5) * uGrain;   // print grain
 
   vec2 t = imgAt(gl_FragCoord.xy);
-  vec4 src = inside(t) ? texture2D(uTex, t) : vec4(0.0);
-  vec3 plain = mix(uPlain, src.rgb, src.a);
+  vec4 dark = texAt(uTex, t);
+  vec4 light = texAt(uPlainTex, t);
+  vec3 plain = mix(mix(uPlain, dark.rgb, dark.a), mix(uPlain, light.rgb, light.a), uLightMix);
 
   // Reveal dissolves in coarse dithered blocks rather than a soft fade.
   float m = step(hash(floor(gl_FragCoord.xy / (6.0 * uDpr)) + 3.7), uReveal);

@@ -144,17 +144,19 @@ function compile(gl, type, src) {
 }
 
 /**
- * Mounts the effect grid on `figure`, which holds the illustration <img> and an overlay <canvas>.
+ * Mounts the effect grid on `figure`, which holds the two illustration <img>s (dark and light
+ * theme) and an overlay <canvas>.
  * Returns false (leaving the plain <img> visible) when WebGL is unavailable.
  */
 export async function mountPortraitFx(figure) {
-  const img = figure.querySelector('img')
+  const img = figure.querySelector('.portrait__img--dark')
+  const lightImg = figure.querySelector('.portrait__img--light')
   const canvas = figure.querySelector('canvas')
   const gl2 = canvas.getContext('webgl2', { antialias: false, alpha: false })
   const gl = gl2 || canvas.getContext('webgl', { antialias: false, alpha: false })
   if (!gl) return false
 
-  await img.decode()
+  await Promise.all([img.decode(), lightImg.decode()])
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)')
 
   const programs = {}
@@ -176,6 +178,7 @@ export async function mountPortraitFx(figure) {
 
   // WebGL1 cannot mipmap a non-power-of-two image; WebGL2 can, which keeps the plain state crisp.
   const imgTex = texture(gl, img, { mipmap: !!gl2 })
+  const lightTex = texture(gl, lightImg, { mipmap: !!gl2 })
   const atlas = glyphAtlas(gl, ASCII_GLYPHS)
   const luma = lumaRange(img)
   // The untreated state shows the page colour behind the cut-out, so track it through theme fades.
@@ -185,6 +188,8 @@ export async function mountPortraitFx(figure) {
     if (m) plain = m.slice(0, 3).map((v) => v / 255)
   }
   let themeFadeUntil = 0
+  const isLight = () => document.documentElement.dataset.theme === 'light'
+  let lightMix = isLight() ? 1 : 0
 
   // Keep in sync with .portrait__img in style.css.
   const imgRect = () => {
@@ -258,6 +263,10 @@ export async function mountPortraitFx(figure) {
     gl.activeTexture(gl.TEXTURE1)
     gl.bindTexture(gl.TEXTURE_2D, atlas)
     gl.uniform1i(loc.uAtlas, 1)
+    gl.activeTexture(gl.TEXTURE2)
+    gl.bindTexture(gl.TEXTURE_2D, lightTex)
+    gl.uniform1i(loc.uPlainTex, 2)
+    gl.uniform1f(loc.uLightMix, lightMix)
     gl.uniform1f(loc.uCount, ASCII_GLYPHS.length)
     gl.uniform2f(loc.uRes, canvas.width, canvas.height)
     gl.uniform4fv(loc.uImg, imgRect())
@@ -294,6 +303,11 @@ export async function mountPortraitFx(figure) {
     }
 
     if (now < themeFadeUntil) readPageColour()
+    const lightTarget = isLight() ? 1 : 0
+    if (lightMix !== lightTarget) {
+      const step = reduceMotion.matches ? 1 : dt / (THEME_FADE_MS * 0.8)
+      lightMix = lightTarget > lightMix ? Math.min(1, lightMix + step) : Math.max(0, lightMix - step)
+    }
     const dpr = resize()
     gl.viewport(0, 0, canvas.width, canvas.height)
     gl.enable(gl.SCISSOR_TEST)
