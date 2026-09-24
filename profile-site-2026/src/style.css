@@ -1,10 +1,23 @@
+/* Dark (cobalt) is the default theme; light is parchment with the blue inverted into the ink. */
 :root {
-  --cobalt: #1338b5;
+  --page: #1338b5;
   --ink: #fff;
   --rule: rgb(255 255 255 / 0.1);
   --link-rest: rgb(255 255 255 / 0.3);
+  --muted: rgb(255 255 255 / 0.6);
+  --tile-edge: rgb(0 0 0 / 0.08);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   /* Side of one square. 591px at the 1440 x 1024 Figma frame. */
   --s: min(41.04vw, 72svh);
+}
+
+:root[data-theme='light'] {
+  --page: #f1edea;
+  --ink: #0f2d93;
+  --rule: rgb(19 56 181 / 0.16);
+  --link-rest: rgb(19 56 181 / 0.3);
+  --muted: rgb(15 45 147 / 0.55);
+  --tile-edge: rgb(19 56 181 / 0.16);
 }
 
 * {
@@ -14,8 +27,11 @@
 
 html,
 body {
-  background: var(--cobalt);
+  background: var(--page);
   color: var(--ink);
+  transition:
+    background-color 0.32s var(--ease-out),
+    color 0.32s var(--ease-out);
   font: 400 14px/21px Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -99,6 +115,7 @@ a:focus-visible {
   z-index: 2;
   background: var(--rule);
   pointer-events: none;
+  transition: background-color 0.32s var(--ease-out);
 }
 
 .rule--left,
@@ -177,7 +194,7 @@ a:focus-visible {
   padding: 0;
   border: 0;
   background: none;
-  color: rgb(255 255 255 / 0.6);
+  color: var(--muted);
   line-height: 0;
   vertical-align: -2px;
   cursor: pointer;
@@ -271,7 +288,7 @@ a:focus-visible {
   padding: 4px;
   border-radius: 4px;
   background: #fff;
-  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+  box-shadow: inset 0 0 0 1px var(--tile-edge);
   object-fit: contain;
   vertical-align: -5px;
 }
@@ -287,4 +304,69 @@ a:has(.link-logo) {
 
 .link-logo[src*='n26'] {
   padding: 2.5px;
+}
+
+/* Theme toggle, after brightwave.io: a half-filled circle that turns over between modes. */
+.theme-toggle {
+  position: fixed;
+  z-index: 3;
+  top: 16px;
+  right: 16px;
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    color 0.24s var(--ease-out),
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.theme-toggle:hover {
+  color: var(--ink);
+  transform: scale(1.08);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.theme-toggle__icon {
+  display: grid;
+  grid-area: 1 / 1;
+  place-items: center;
+  transition:
+    opacity 0.36s var(--ease-out),
+    transform 0.64s var(--ease-out);
+}
+
+.theme-toggle__icon--light,
+:root[data-theme='light'] .theme-toggle__icon--dark {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.8);
+}
+
+:root[data-theme='light'] .theme-toggle__icon--light {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  .rule,
+  .theme-toggle,
+  .theme-toggle__icon {
+    transition: none;
+  }
 }

@@ -1,7 +1,7 @@
 import { VERT, EFFECT_NAMES, ASCII_GLYPHS, fragmentFor } from './shaders.js'
 import { EFFECT_SETTINGS } from './palette.js'
 
-const PAGE_COBALT = '#1338b5'
+const THEME_FADE_MS = 400      // covers the page's 0.32s background transition
 const GRAIN = 0.16
 const SPLITS = [0.5, 0.62, 0.42, 0.56, 0.47, 0.6]
 const REVEAL_MS = 260          // one cell's dissolve
@@ -178,7 +178,13 @@ export async function mountPortraitFx(figure) {
   const imgTex = texture(gl, img, { mipmap: !!gl2 })
   const atlas = glyphAtlas(gl, ASCII_GLYPHS)
   const luma = lumaRange(img)
-  const plain = hexToRgb(PAGE_COBALT)
+  // The untreated state shows the page colour behind the cut-out, so track it through theme fades.
+  let plain = [0, 0, 0]
+  const readPageColour = () => {
+    const m = getComputedStyle(document.body).backgroundColor.match(/[\d.]+/g)
+    if (m) plain = m.slice(0, 3).map((v) => v / 255)
+  }
+  let themeFadeUntil = 0
 
   // Keep in sync with .portrait__img in style.css.
   const imgRect = () => {
@@ -287,6 +293,7 @@ export async function mountPortraitFx(figure) {
       moving ||= c.reveal !== c.target
     }
 
+    if (now < themeFadeUntil) readPageColour()
     const dpr = resize()
     gl.viewport(0, 0, canvas.width, canvas.height)
     gl.enable(gl.SCISSOR_TEST)
@@ -294,7 +301,7 @@ export async function mountPortraitFx(figure) {
     for (const rect of layout) draw(cells[rect.index], rect, dpr)
     gl.disable(gl.SCISSOR_TEST)
 
-    if (moving || !reduceMotion.matches) kick()
+    if (moving || now < themeFadeUntil || !reduceMotion.matches) kick()
   }
 
   function kick() {
@@ -335,6 +342,11 @@ export async function mountPortraitFx(figure) {
     kick()
   })
   reduceMotion.addEventListener('change', kick)
+  new MutationObserver(() => {
+    themeFadeUntil = performance.now() + THEME_FADE_MS
+    kick()
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+  readPageColour()
   canvas.addEventListener('webglcontextlost', () => figure.classList.remove('is-live'))
 
   // ---- intro: the plain illustration first, then cells switch on one at a time -------------

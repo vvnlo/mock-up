@@ -9,8 +9,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet" />
     <link rel="preload" href="./vivian.png" as="image" />
+    <script>
+      // Apply the saved theme before first paint; cobalt (dark) is the default.
+      try {
+        if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'
+      } catch {}
+    </script>
   </head>
   <body>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light mode">
+      <span class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="12" height="12" fill="none"><rect x="3.5" y="3.5" width="41" height="41" rx="20.5" stroke="currentColor" stroke-width="5" /><path d="M46.6365 24C46.6365 11.2975 36.339 1 23.6365 1V47C36.339 47 46.6365 36.7025 46.6365 24Z" fill="currentColor" /></svg>
+      </span>
+      <span class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="12" height="12" fill="none"><rect x="3.5" y="3.5" width="41" height="41" rx="20.5" stroke="currentColor" stroke-width="5" /><path d="M1.36353 24C1.36353 11.2975 11.661 1 24.3635 1V47C11.661 47 1.36353 36.7025 1.36353 24Z" fill="currentColor" /></svg>
+      </span>
+    </button>
     <main class="frame">
       <div class="box">
         <span class="rule rule--left" aria-hidden="true"></span>

@@ -1,7 +1,9 @@
 import './style.css'
 import { mountPortraitFx } from './portrait-fx.js'
 import { mountCopyButtons } from './copy-button.js'
+import { mountThemeToggle } from './theme-toggle.js'
 
+mountThemeToggle(document.querySelector('.theme-toggle'))
 mountCopyButtons()
 
 mountPortraitFx(document.getElementById('portrait')).catch((err) => {
