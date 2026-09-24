@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vivian Lo — Designer</title>
+    <meta name="description" content="Vivian Lo is a designer who turns complex systems and workflows into intuitive products." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet" />
+    <link rel="preload" href="/vivian.png" as="image" />
+  </head>
+  <body>
+    <main class="frame">
+      <div class="box">
+        <span class="rule rule--left" aria-hidden="true"></span>
+        <span class="rule rule--right" aria-hidden="true"></span>
+        <span class="rule rule--top" aria-hidden="true"></span>
+        <span class="rule rule--bottom" aria-hidden="true"></span>
+        <span class="rule rule--divider" aria-hidden="true"></span>
+
+        <section class="about">
+          <h1 class="about__name">Vivian Lo<br />Designer</h1>
+          <div class="about__bio">
+            <p>Vivian is a designer who turns complex systems and workflows into intuitive products, with a knack for 0-to-1 challenges.</p>
+            <p>Based in NYC, she’s currently Head of Product and Design at Brightwave, a startup building compliance-ready agent infrastructure. Previously, she led teams at Shopify, N26, and IDEO.</p>
+          </div>
+          <p class="about__work"><a href="#">View work</a>&nbsp;↗</p>
+          <p class="about__contact">
+            Reach out at
+            <span class="about__links">
+              <span><a href="mailto:hello@example.com">Email</a>↗</span>
+              <span><a href="#">LinkedIn</a>↗</span>
+              <span><a href="#">X</a>↗</span>
+            </span>
+          </p>
+        </section>
+
+        <figure class="portrait" id="portrait">
+          <img class="portrait__img" src="/vivian.png" alt="Illustrated portrait of Vivian Lo" width="1236" height="1273" />
+          <canvas class="portrait__fx" aria-hidden="true"></canvas>
+        </figure>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
