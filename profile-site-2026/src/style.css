@@ -261,3 +261,16 @@ a:focus-visible {
 .nowrap {
   white-space: nowrap;
 }
+
+/* Company logo after a link, after paulwong.work. */
+.link-logo {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  vertical-align: -3px;
+}
+
+a:has(.link-logo) {
+  white-space: nowrap;
+}
