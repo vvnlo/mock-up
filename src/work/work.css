@@ -200,25 +200,39 @@ a:focus-visible, button:focus-visible, .strip:focus-visible {
   color: var(--muted);
 }
 
-/* impact: same block for every company */
-.impact {
+/* Shopify teams */
+.teams { margin-top: 40px; border-top: 1px solid var(--line); }
+.team {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  margin: 40px 0 0;
-  border-top: 1px solid var(--line);
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 8px 24px;
+  width: 100%;
+  padding: 18px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s;
 }
-.impact > div { padding: 18px 20px 0 0; }
-.impact dt {
-  font-size: clamp(24px, 2.6vw, 32px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  font-variant-numeric: tabular-nums;
-}
-.impact dd { margin: 6px 0 0; font-size: 13px; color: var(--body); max-width: 26ch; }
+.team:hover, .team.on { background: var(--chip); box-shadow: -12px 0 0 var(--chip), 12px 0 0 var(--chip); }
+.team-name { display: flex; flex-direction: column; gap: 2px; }
+.team-name strong { font-weight: 500; }
+.team-name span { font-size: 13px; color: var(--muted); }
+.team-body { display: flex; flex-direction: column; gap: 10px; }
+.team-scope { color: var(--body); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12.5px; padding: 4px 10px; border-radius: 999px; background: var(--chip); }
+.team:hover .chip, .team.on .chip { background: var(--bg); }
+.hint { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); }
+
+.strip.focus .frame:not(.on) { opacity: 0.2; }
+.frame { transition: opacity 0.3s ease; }
 
 /* gallery strip: full bleed, starts in line with the text */
-.gallery { margin-top: 48px; }
+.gallery { margin-top: 40px; }
 .strip {
   display: flex;
   gap: 16px;
@@ -433,5 +447,6 @@ a:focus-visible, button:focus-visible, .strip:focus-visible {
   .toc a { grid-template-columns: minmax(0, 1fr) auto; row-gap: 4px; }
   .toc .what { grid-column: 1 / -1; grid-row: 2; }
   .email { display: none; }
+  .team { grid-template-columns: minmax(0, 1fr); }
   .strip { gap: 12px; }
 }

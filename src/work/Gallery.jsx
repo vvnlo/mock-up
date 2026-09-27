@@ -4,12 +4,16 @@ import Media from './Media.jsx'
 const smooth = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
 
-function Frame({ frame, index }) {
+function Frame({ frame, index, activeTeam, onHoverTeam }) {
   // Frames after the first fade out in the 30-second read.
   const detail = index > 0 ? ' detail' : ''
+  const on = activeTeam && frame.team === activeTeam ? ' on' : ''
+  const hover = onHoverTeam
+    ? { onMouseEnter: () => onHoverTeam(frame.team), onMouseLeave: () => onHoverTeam(null) }
+    : {}
   if (frame.size === 'grid') {
     return (
-      <figure className={`frame frame-grid${detail}`}>
+      <figure className={`frame frame-grid${detail}${on}`} data-team={frame.team} {...hover}>
         <div className="frame-box grid-box">
           {frame.items.map((item) => (
             <div className="cell" key={item.title}>
@@ -26,7 +30,7 @@ function Frame({ frame, index }) {
     )
   }
   return (
-    <figure className={`frame frame-${frame.size}${detail}`}>
+    <figure className={`frame frame-${frame.size}${detail}${on}`} data-team={frame.team} {...hover}>
       <div className="frame-box">
         <Media item={frame} />
       </div>
@@ -38,7 +42,7 @@ function Frame({ frame, index }) {
   )
 }
 
-export default function Gallery({ frames, label }) {
+export default function Gallery({ frames, label, activeTeam, onHoverTeam, jump }) {
   const ref = useRef(null)
   const drag = useRef(null)
   const [pos, setPos] = useState({ index: 0, atStart: true, atEnd: false })
@@ -64,6 +68,15 @@ export default function Gallery({ frames, label }) {
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
   }, [update])
+
+  // Jump to a team's first frame when its row is clicked.
+  useEffect(() => {
+    if (!jump) return
+    const el = ref.current
+    const i = frames.findIndex((f) => f.team === jump.team)
+    if (i < 0) return
+    el.scrollTo({ left: frameLefts()[i], behavior: smooth() })
+  }, [jump, frames, frameLefts])
 
   const go = (dir) => {
     const el = ref.current
@@ -105,7 +118,7 @@ export default function Gallery({ frames, label }) {
   return (
     <div className="gallery">
       <div
-        className="strip"
+        className={activeTeam ? 'strip focus' : 'strip'}
         ref={ref}
         role="region"
         aria-label={label}
@@ -117,7 +130,7 @@ export default function Gallery({ frames, label }) {
         onPointerCancel={endDrag}
       >
         {frames.map((frame, i) => (
-          <Frame frame={frame} index={i} key={frame.title + i} />
+          <Frame frame={frame} index={i} key={frame.title + i} activeTeam={activeTeam} onHoverTeam={onHoverTeam} />
         ))}
       </div>
       <div className="strip-bar detail">

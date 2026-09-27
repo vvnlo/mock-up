@@ -20,7 +20,40 @@ function SkimToggle({ on, onChange }) {
   )
 }
 
+function Teams({ teams, active, onHover, onPick }) {
+  return (
+    <div className="teams">
+      {teams.map((t) => (
+        <button
+          type="button"
+          className={active === t.id ? 'team on' : 'team'}
+          key={t.id}
+          onMouseEnter={() => onHover(t.id)}
+          onMouseLeave={() => onHover(null)}
+          onFocus={() => onHover(t.id)}
+          onBlur={() => onHover(null)}
+          onClick={() => onPick(t.id)}
+        >
+          <span className="team-name">
+            <strong>{t.name}</strong>
+            <span className="detail">{t.role}</span>
+          </span>
+          <span className="team-body">
+            <span className="team-scope">{t.scope}</span>
+            <span className="chips detail">
+              {t.projects.map((p) => <span className="chip" key={p}>{p}</span>)}
+            </span>
+          </span>
+        </button>
+      ))}
+    </div>
+  )
+}
+
 function Company({ c }) {
+  const [activeTeam, setActiveTeam] = useState(null)
+  const [jump, setJump] = useState(null)
+
   return (
     <section className="company" id={c.id} aria-labelledby={`${c.id}-name`}>
       <header className="company-head">
@@ -32,20 +65,31 @@ function Company({ c }) {
       </header>
       <h2 className="claim">{c.claim}</h2>
       <p className="summary detail">{c.summary}</p>
-      <ul className="roles detail">
-        {c.roles.map((r) => <li key={r}>{r}</li>)}
-      </ul>
+      {c.roles && (
+        <ul className="roles detail">
+          {c.roles.map((r) => <li key={r}>{r}</li>)}
+        </ul>
+      )}
 
-      <dl className="impact">
-        {c.impact.map((m) => (
-          <div key={m.label}>
-            <dt>{m.value}</dt>
-            <dd>{m.label}</dd>
-          </div>
-        ))}
-      </dl>
+      {c.teams && (
+        <>
+          <Teams
+            teams={c.teams}
+            active={activeTeam}
+            onHover={setActiveTeam}
+            onPick={(team) => setJump({ team, at: Date.now() })}
+          />
+          <p className="hint detail">Hover a team to see its work. Click to jump to it.</p>
+        </>
+      )}
 
-      <Gallery frames={c.gallery} label={`${c.name} work`} />
+      <Gallery
+        frames={c.gallery}
+        label={`${c.name} work`}
+        activeTeam={activeTeam}
+        onHoverTeam={c.teams ? setActiveTeam : undefined}
+        jump={jump}
+      />
 
       <div className="cases detail">
         <span className="cases-label">Case studies</span>

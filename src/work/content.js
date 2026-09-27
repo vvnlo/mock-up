@@ -31,11 +31,6 @@ export const companies = [
     summary:
       'AI products for finance teams: a research platform for private market due diligence, and Tounami, compliance-ready agent infrastructure.',
     roles: ['Head of Product & Design · 2025–now'],
-    impact: [
-      { value: '0 → 2', label: 'AI products taken from idea to launch' },
-      { value: '[X] wks', label: 'From first sketch to MVP' },
-      { value: '[X]', label: 'Finance teams using it' },
-    ],
     gallery: [
       { size: 'large', title: 'Research workspace', note: 'Brightwave', tone: 'blue', art: 'ui', motion: true },
       { size: 'medium', title: 'Source citations', tone: 'sand', art: 'stack' },
@@ -67,26 +62,39 @@ export const companies = [
     claim: 'Led design for Search and Selling Strategies, [X] designers across three teams.',
     summary:
       'Search across the storefront, Shop app and admin, and the selling tools merchants use to grow: subscriptions, bundles, pre-orders and more.',
-    roles: [
-      'Head of Design, Search · 2023–25',
-      'Head of Design, Selling Strategies · 2024–25',
-      'Design Lead, Ecosystem · 2022–23',
-    ],
-    impact: [
-      { value: '[X]', label: 'Designers led across Search, Selling Strategies and Ecosystem' },
-      { value: 'MVP → default', label: 'Shopify Search, now the backbone for millions of merchants' },
-      { value: '5', label: 'Selling products aligned on shared primitives' },
-      { value: '+[X]%', label: '[Search conversion lift]' },
+    // Shopify shows its teams instead of a roles line. Gallery frames link to a team via `team`.
+    teams: [
+      {
+        id: 'search',
+        name: 'Search',
+        role: 'Head of Design · 2023–25 · [X] designers',
+        scope: 'Took Shopify Search from MVP to the default backbone for millions of merchants.',
+        projects: ['AI-powered search', 'Search API', 'Buyer search UX', 'Merchant search tools', 'Shop app search'],
+      },
+      {
+        id: 'selling',
+        name: 'Selling Strategies',
+        role: 'Head of Design · 2024–25 · [X] designers',
+        scope: 'Aligned five selling products on shared primitives and one quality bar.',
+        projects: ['Subscriptions', 'Bundles', 'Combined Listings', 'Pre-orders', 'Try Before You Buy'],
+      },
+      {
+        id: 'ecosystem',
+        name: 'Ecosystem',
+        role: 'Design Lead · 2022–23 · [X] designers',
+        scope: 'The full app lifecycle inside Shopify admin, from discovery to removal.',
+        projects: ['App Store', 'Install', 'Apps in admin', 'Removal'],
+      },
     ],
     gallery: [
-      { size: 'large', title: 'Search & Discovery', note: 'Search', tone: 'stone', art: 'ui', motion: true },
-      { size: 'medium', title: 'Shop app search', note: 'Search', tone: 'sage', art: 'phone', motion: true },
-      { size: 'medium', title: 'Search filters', note: 'Search', tone: 'sand', art: 'pills' },
-      { size: 'large', title: 'Subscriptions', note: 'Selling Strategies', tone: 'rose', art: 'ui' },
+      { size: 'large', title: 'Search & Discovery', team: 'search', note: 'Search', tone: 'stone', art: 'ui', motion: true },
+      { size: 'medium', title: 'Shop app search', team: 'search', note: 'Search', tone: 'sage', art: 'phone', motion: true },
+      { size: 'medium', title: 'Search filters', team: 'search', note: 'Search', tone: 'sand', art: 'pills' },
+      { size: 'large', title: 'Subscriptions', team: 'selling', note: 'Selling Strategies', tone: 'rose', art: 'ui' },
       {
         size: 'grid',
         title: 'Selling tools',
-        note: 'Selling Strategies',
+        team: 'selling', note: 'Selling Strategies',
         items: [
           { title: 'Bundles', tone: 'sand', art: 'stack' },
           { title: 'Pre-orders', tone: 'blue', art: 'toast', motion: true },
@@ -94,7 +102,7 @@ export const companies = [
           { title: 'Try Before You Buy', tone: 'sage', art: 'rows' },
         ],
       },
-      { size: 'large', title: 'Apps in admin', note: 'Ecosystem', tone: 'blue', art: 'ui', motion: true },
+      { size: 'large', title: 'Apps in admin', team: 'ecosystem', note: 'Ecosystem', tone: 'blue', art: 'ui', motion: true },
     ],
     caseStudies: [
       { title: 'AI-powered search', href: '#', locked: true },
@@ -112,12 +120,6 @@ export const companies = [
     summary:
       'Led the overhaul of the app’s information architecture and the core money features that shaped N26: Spaces, Feed, Insights, Rules and Roundups.',
     roles: ['Head of Design, Engagement & US · [Years]', 'Senior Product Design Lead, US · [Years]'],
-    impact: [
-      { value: '6 → 13', label: 'Designers, managers and researchers' },
-      { value: '1 → 4', label: 'US design team' },
-      { value: '250k', label: 'US customers in the first 6 months' },
-      { value: '+[X]%', label: 'MAU after the IA overhaul' },
-    ],
     gallery: [
       { size: 'medium', title: 'Spaces', tone: 'sage', art: 'phone', motion: true },
       { size: 'medium', title: 'Shared payments', tone: 'sand', art: 'toast' },
