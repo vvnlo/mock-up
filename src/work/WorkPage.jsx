@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { intro, companies, earlier } from './content.js'
 import Gallery from './Gallery.jsx'
 
@@ -17,6 +17,57 @@ function SkimToggle({ on, onChange }) {
       <span className="switch" aria-hidden="true" />
       30-second read
     </button>
+  )
+}
+
+// The same row is used in the list at the top and as each section's sticky header.
+function RowContent({ c, headingId }) {
+  return (
+    <>
+      <span className="co" id={headingId}>
+        <span className="logo" aria-hidden="true">{c.logo}</span>
+        {c.name}
+      </span>
+      <span className="row-text">
+        <span className="headline">{c.headline}</span>
+        <span className="position">{c.position}</span>
+      </span>
+      <span className="years">{c.years}</span>
+    </>
+  )
+}
+
+function StickyRow({ c }) {
+  const ref = useRef(null)
+  const [stuck, setStuck] = useState(false)
+  useEffect(() => {
+    const observer = new IntersectionObserver(([e]) => setStuck(e.intersectionRatio < 1), {
+      threshold: [1],
+    })
+    observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+  return (
+    <header className={stuck ? 'row sticky stuck' : 'row sticky'} ref={ref}>
+      <RowContent c={c} headingId={`${c.id}-name`} />
+    </header>
+  )
+}
+
+function CaseStudies({ items }) {
+  return (
+    <p className="cases">
+      Case studies:{' '}
+      {items.map((cs, i) => (
+        <span key={cs.title}>
+          <a href={cs.href}>
+            {cs.title}
+            {cs.locked && <LockIcon />}
+          </a>
+          {i < items.length - 1 && ', '}
+        </span>
+      ))}
+    </p>
   )
 }
 
@@ -40,9 +91,7 @@ function Teams({ teams, active, onHover, onPick }) {
           </span>
           <span className="team-body">
             <span className="team-scope">{t.scope}</span>
-            <span className="chips detail">
-              {t.projects.map((p) => <span className="chip" key={p}>{p}</span>)}
-            </span>
+            <span className="projects detail">{t.projects.join(' · ')}</span>
           </span>
         </button>
       ))}
@@ -56,32 +105,22 @@ function Company({ c }) {
 
   return (
     <section className="company" id={c.id} aria-labelledby={`${c.id}-name`}>
-      <header className="company-head">
-        <span className="co" id={`${c.id}-name`}>
-          <span className="logo" aria-hidden="true">{c.logo}</span>
-          {c.name}
-        </span>
-        <span className="years">{c.years}</span>
-      </header>
-      <h2 className="claim">{c.claim}</h2>
-      <p className="summary detail">{c.summary}</p>
-      {c.roles && (
-        <ul className="roles detail">
-          {c.roles.map((r) => <li key={r}>{r}</li>)}
-        </ul>
-      )}
+      <StickyRow c={c} />
+      <div className="company-body">
+        <div className="about detail">
+          <p className="summary">{c.summary}</p>
+          <CaseStudies items={c.caseStudies} />
+        </div>
 
-      {c.teams && (
-        <>
+        {c.teams && (
           <Teams
             teams={c.teams}
             active={activeTeam}
             onHover={setActiveTeam}
             onPick={(team) => setJump({ team, at: Date.now() })}
           />
-          <p className="hint detail">Hover a team to see its work. Click to jump to it.</p>
-        </>
-      )}
+        )}
+      </div>
 
       <Gallery
         frames={c.gallery}
@@ -90,16 +129,6 @@ function Company({ c }) {
         onHoverTeam={c.teams ? setActiveTeam : undefined}
         jump={jump}
       />
-
-      <div className="cases detail">
-        <span className="cases-label">Case studies</span>
-        {c.caseStudies.map((cs) => (
-          <a className="case" href={cs.href} key={cs.title}>
-            {cs.locked && <LockIcon />}
-            {cs.title}
-          </a>
-        ))}
-      </div>
     </section>
   )
 }
@@ -127,30 +156,27 @@ export default function WorkPage() {
         <ol className="toc">
           {companies.map((c) => (
             <li key={c.id}>
-              <a href={`#${c.id}`}>
-                <span className="co"><span className="logo" aria-hidden="true">{c.logo}</span>{c.name}</span>
-                <span className="what">{c.oneLiner}</span>
-                <span className="years">{c.years}</span>
+              <a className="row" href={`#${c.id}`}>
+                <RowContent c={c} />
               </a>
             </li>
           ))}
           <li className="muted">
-            <a href={`#${earlier.id}`}>
-              <span className="co"><span className="logo" aria-hidden="true">{earlier.logo}</span>{earlier.name}</span>
-              <span className="what">{earlier.oneLiner}</span>
-              <span className="years">{earlier.years}</span>
+            <a className="row" href={`#${earlier.id}`}>
+              <RowContent c={earlier} />
             </a>
           </li>
         </ol>
 
         {companies.map((c) => <Company c={c} key={c.id} />)}
 
-        <section className="earlier detail" id={earlier.id}>
-          <header className="company-head">
-            <span className="co"><span className="logo" aria-hidden="true">{earlier.logo}</span>Earlier: {earlier.name}</span>
-            <span className="years">{earlier.years}</span>
+        <section className="company earlier" id={earlier.id} aria-labelledby={`${earlier.id}-name`}>
+          <header className="row muted">
+            <RowContent c={earlier} headingId={`${earlier.id}-name`} />
           </header>
-          <p>{earlier.text}</p>
+          <div className="company-body">
+            <p className="summary detail">{earlier.text}</p>
+          </div>
         </section>
 
         <footer className="footer detail">

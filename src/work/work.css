@@ -138,21 +138,22 @@ a:focus-visible, button:focus-visible, .strip:focus-visible {
 
 .lock { width: 12px; height: 12px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.4; }
 
-/* table of contents */
-.toc { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.toc a {
+/* experience rows: the list at the top and each section's sticky header */
+.toc { list-style: none; margin: 0; padding: 0; }
+.row {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr) auto;
+  grid-template-columns: 180px minmax(0, 1fr) auto;
   gap: 16px;
   align-items: baseline;
-  padding-block: 16px;
-  border-bottom: 1px solid var(--line);
+  padding-block: 14px;
   text-decoration: none;
 }
-.toc a:hover .what { text-decoration: underline; }
-.toc .what { color: var(--body); }
-.toc .muted .co, .toc .muted .what { color: var(--muted); }
-.toc .muted .logo { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--muted); }
+.row-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.headline { color: var(--ink); }
+.position { font-size: 13.5px; color: var(--muted); }
+a.row:hover .headline { text-decoration: underline; }
+.row.muted .co, .row.muted .headline { color: var(--muted); }
+.row.muted .logo { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--muted); }
 
 .co { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; }
 .logo {
@@ -169,70 +170,56 @@ a:focus-visible, button:focus-visible, .strip:focus-visible {
 }
 .years { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-/* company chapter */
-.company { padding-top: clamp(80px, 12vw, 160px); scroll-margin-top: 24px; }
-.company-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  padding-top: 16px;
-  border-top: 1px solid var(--ink);
+/* company section */
+.company { padding-top: clamp(72px, 10vw, 128px); }
+.sticky {
+  position: sticky;
+  top: -1px;
+  z-index: 5;
+  padding-top: 15px;
+  background: var(--bg);
+  margin-inline: calc(50% - 50vw);
+  padding-inline: var(--edge);
+  transition: box-shadow 0.2s;
 }
-.claim {
-  font-size: clamp(26px, 3.4vw, 40px);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  margin: 24px 0 0;
-  max-width: 22ch;
-  text-wrap: balance;
-}
-.summary { color: var(--body); margin: 16px 0 0; max-width: 60ch; }
-.roles {
-  list-style: none;
-  margin: 12px 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 20px;
-  font-size: 13px;
-  color: var(--muted);
-}
+.sticky.stuck { box-shadow: 0 1px 0 var(--line); }
+.company-body { padding-left: 196px; }
+.about { max-width: 62ch; margin-top: 8px; }
+.summary { color: var(--body); margin: 0; }
+.cases { margin: 10px 0 0; color: var(--body); }
+.cases a { color: var(--ink); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.cases a:hover { text-decoration-thickness: 2px; }
+.cases .lock { width: 11px; height: 11px; margin-left: 4px; vertical-align: -1px; color: var(--muted); }
 
 /* Shopify teams */
-.teams { margin-top: 40px; border-top: 1px solid var(--line); }
+.teams { margin-top: 32px; display: flex; flex-direction: column; gap: 2px; }
 .team {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 8px 24px;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 4px 24px;
   width: 100%;
-  padding: 18px 0;
+  padding: 12px 0;
   border: 0;
-  border-bottom: 1px solid var(--line);
+  border-radius: 8px;
   background: none;
   color: inherit;
   font: inherit;
   text-align: left;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, box-shadow 0.2s;
 }
 .team:hover, .team.on { background: var(--chip); box-shadow: -12px 0 0 var(--chip), 12px 0 0 var(--chip); }
 .team-name { display: flex; flex-direction: column; gap: 2px; }
 .team-name strong { font-weight: 500; }
-.team-name span { font-size: 13px; color: var(--muted); }
-.team-body { display: flex; flex-direction: column; gap: 10px; }
+.team-name span, .projects { font-size: 13.5px; color: var(--muted); }
+.team-body { display: flex; flex-direction: column; gap: 2px; }
 .team-scope { color: var(--body); }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { font-size: 12.5px; padding: 4px 10px; border-radius: 999px; background: var(--chip); }
-.team:hover .chip, .team.on .chip { background: var(--bg); }
-.hint { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); }
 
 .strip.focus .frame:not(.on) { opacity: 0.2; }
 .frame { transition: opacity 0.3s ease; }
 
 /* gallery strip: full bleed, starts in line with the text */
-.gallery { margin-top: 40px; }
+.gallery { margin-top: 36px; }
 .strip {
   display: flex;
   gap: 16px;
@@ -323,35 +310,8 @@ a:focus-visible, button:focus-visible, .strip:focus-visible {
 .arrows button:hover:not(:disabled) { border-color: var(--ink); }
 .arrows button:disabled { opacity: 0.35; cursor: default; }
 
-/* case study links */
-.cases { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 28px; }
-.cases-label {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin-right: 6px;
-}
-.case {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: var(--chip);
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-}
-.case:hover { background: var(--ink); color: var(--bg); }
-
 /* earlier + footer */
-.earlier { padding-top: clamp(64px, 9vw, 112px); scroll-margin-top: 24px; }
-.earlier .company-head { border-top-color: var(--line); }
-.earlier .co { color: var(--body); }
-.earlier p { color: var(--muted); max-width: 60ch; margin: 12px 0 0; font-size: 14px; }
+.company.earlier .company-body { padding-top: 0; }
 .footer {
   display: flex;
   justify-content: space-between;
@@ -359,7 +319,6 @@ a:focus-visible, button:focus-visible, .strip:focus-visible {
   flex-wrap: wrap;
   margin-top: clamp(80px, 10vw, 128px);
   padding-block: 24px 40px;
-  border-top: 1px solid var(--line);
   font-size: 14px;
   color: var(--body);
 }
@@ -444,9 +403,11 @@ a:focus-visible, button:focus-visible, .strip:focus-visible {
 
 @media (max-width: 720px) {
   :root { --radius: 12px; --frame-h: clamp(220px, 62vw, 320px); }
-  .toc a { grid-template-columns: minmax(0, 1fr) auto; row-gap: 4px; }
-  .toc .what { grid-column: 1 / -1; grid-row: 2; }
+  .row { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; }
+  .row-text { grid-column: 1 / -1; grid-row: 2; }
+  .company-body { padding-left: 0; }
   .email { display: none; }
   .team { grid-template-columns: minmax(0, 1fr); }
+  .sticky .row-text .position { display: none; }
   .strip { gap: 12px; }
 }

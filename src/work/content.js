@@ -26,11 +26,10 @@ export const companies = [
     name: 'Brightwave',
     logo: 'B',
     years: '2025–now',
-    oneLiner: 'Built two AI products from zero, hands-on',
-    claim: 'Built two AI products from zero, designing most of it myself.',
+    headline: 'Built two AI products from zero, hands-on',
+    position: 'Head of Product & Design',
     summary:
       'AI products for finance teams: a research platform for private market due diligence, and Tounami, compliance-ready agent infrastructure.',
-    roles: ['Head of Product & Design · 2025–now'],
     gallery: [
       { size: 'large', title: 'Research workspace', note: 'Brightwave', tone: 'blue', art: 'ui', motion: true },
       { size: 'medium', title: 'Source citations', tone: 'sand', art: 'stack' },
@@ -58,11 +57,11 @@ export const companies = [
     name: 'Shopify',
     logo: 'S',
     years: '2022–25',
-    oneLiner: 'Led design for Search and Selling Strategies',
-    claim: 'Led design for Search and Selling Strategies, [X] designers across three teams.',
+    headline: 'Led design for Search and Selling Strategies',
+    position: 'Head of Design, Search & Selling Strategies',
     summary:
-      'Search across the storefront, Shop app and admin, and the selling tools merchants use to grow: subscriptions, bundles, pre-orders and more.',
-    // Shopify shows its teams instead of a roles line. Gallery frames link to a team via `team`.
+      'I led [X] designers across three teams, covering search in the storefront, Shop app and admin, and the selling tools merchants use to grow.',
+    // Shopify also lists its teams. Gallery frames link to a team via `team`.
     teams: [
       {
         id: 'search',
@@ -115,11 +114,10 @@ export const companies = [
     name: 'N26',
     logo: 'N',
     years: '2018–22',
-    oneLiner: 'Grew the team from 6 to 13 and launched in the US',
-    claim: 'Grew the design team and took N26 to the US.',
+    headline: 'Grew the team from 6 to 13 and launched in the US',
+    position: 'Head of Design, Engagement & US',
     summary:
       'Led the overhaul of the app’s information architecture and the core money features that shaped N26: Spaces, Feed, Insights, Rules and Roundups.',
-    roles: ['Head of Design, Engagement & US · [Years]', 'Senior Product Design Lead, US · [Years]'],
     gallery: [
       { size: 'medium', title: 'Spaces', tone: 'sage', art: 'phone', motion: true },
       { size: 'medium', title: 'Shared payments', tone: 'sand', art: 'toast' },
@@ -140,6 +138,7 @@ export const earlier = {
   name: 'IDEO',
   logo: 'I',
   years: '[Years]',
-  oneLiner: '[Your role, one phrase]',
+  headline: '[One phrase on the work]',
+  position: '[Your role]',
   text: '[One sentence on your role and the kind of work, e.g. the clients or problems you designed for.]',
 }
