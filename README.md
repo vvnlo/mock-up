@@ -9,10 +9,10 @@ Run `npm install`, then `npm run dev` and open http://localhost:5173/work/.
 
 ## Editing the work page
 
-All copy, impact numbers, gallery frames and case study links live in `src/work/content.js`.
+All copy, gallery frames and case study links live in `src/work/content.js`.
 Put images and videos in `public/work/<company>/` and set each frame's `src`
 (for example `'/work/shopify/search.mp4'`). Use muted `.mp4`/`.webm` loops instead of `.gif`.
-Frames without a `src` show a placeholder.
+Frames without a `src` show a grey placeholder.
 
 ---
 
