@@ -1,3 +1,21 @@
+# Mockup tool + work page
+
+This repo holds two pages:
+
+- `/` is the screenshot mockup tool.
+- `/work/` is the portfolio work page (the "See my work" page linked from vvnlo.com).
+
+Run `npm install`, then `npm run dev` and open http://localhost:5173/work/.
+
+## Editing the work page
+
+All copy, impact numbers, gallery frames and case study links live in `src/work/content.js`.
+Put images and videos in `public/work/<company>/` and set each frame's `src`
+(for example `'/work/shopify/search.mp4'`). Use muted `.mp4`/`.webm` loops instead of `.gif`.
+Frames without a `src` show a placeholder.
+
+---
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
