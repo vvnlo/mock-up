@@ -20,8 +20,8 @@
     --muted: rgb(255 255 255 / 0.55);
     --rule: rgb(255 255 255 / 0.12);
     --link-rest: rgb(255 255 255 / 0.3);
-    --tile-edge: rgb(0 0 0 / 0.08);
-    --placeholder: #1a1a1a;
+    --tile-edge: rgb(255 255 255 / 0.08);
+    --placeholder: #141414;
   }
 }
 :root[data-theme='dark'] {
@@ -31,8 +31,8 @@
   --muted: rgb(255 255 255 / 0.55);
   --rule: rgb(255 255 255 / 0.12);
   --link-rest: rgb(255 255 255 / 0.3);
-  --tile-edge: rgb(0 0 0 / 0.08);
-  --placeholder: #1a1a1a;
+  --tile-edge: rgb(255 255 255 / 0.08);
+  --placeholder: #141414;
 }
 
 * { box-sizing: border-box; margin: 0; }
@@ -45,7 +45,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.32s var(--ease-out), color 0.32s var(--ease-out);
 }
-.site { position: relative; overflow-x: clip; min-height: 100vh; }
+.site { position: relative; overflow: clip; min-height: 100vh; padding-bottom: 64px; }
 h1, h2 { font: inherit; }
 a { color: inherit; text-decoration: none; }
 a:focus-visible, button:focus-visible, .strip:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
@@ -117,89 +117,87 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 .detail { transition: opacity 0.3s ease; }
 .skimming .detail { opacity: 0.1; }
 
-/* the column of boxes, framed by hairlines that run off the page */
-.column {
+/* one framed column: outer side lines run the full page height, sections split by horizontal lines */
+.frame-box {
   position: relative;
-  width: calc(var(--s) * 2);
-  margin: 0 auto;
-  padding-block: 96px;
+  width: min(1120px, 100vw - 48px);
+  margin: 64px auto 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
 .rule { position: absolute; z-index: 2; background: var(--rule); pointer-events: none; }
-.rule--left, .rule--right { top: 0; bottom: 0; width: 1px; }
+.rule--left, .rule--right { top: -100vmax; bottom: -64px; width: 1px; }
 .rule--left { left: 0; }
 .rule--right { right: 0; }
-.rule--top, .rule--bottom { left: -100vmax; right: -100vmax; height: 1px; }
-.rule--top { top: 0; }
-.rule--bottom { bottom: 0; }
 
-.row {
-  position: relative;
+.section { scroll-margin-top: 24px; }
+.section + .section { border-top: 1px solid var(--rule); }
+.band { position: relative; }
+
+/* text band: label and headline on the left, paragraphs on the right */
+.band--text {
   display: grid;
-  grid-template-columns: var(--s) var(--s);
-  min-height: var(--s);
-  scroll-margin-top: 48px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 21px 48px;
+  padding: 84px 40px;
 }
-.cell-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: calc(var(--s) * 0.12);
-}
-.cell-text > * { max-width: 460px; }
 .headline { margin-top: 21px; }
-.about p { margin-top: 21px; }
-.cell-media { position: relative; overflow: hidden; border-left: 1px solid var(--rule); }
+.band-right { max-width: 480px; }
+.about p + p { margin-top: 21px; }
 
-.toc { list-style: none; padding: 0; margin-top: 21px; }
-.toc li { display: flex; flex-direction: column; }
-.toc li + li { margin-top: 21px; }
+.toc { list-style: none; padding: 0; }
+.toc li { display: grid; grid-template-columns: 140px minmax(0, 1fr) auto; gap: 16px; }
+.toc li + li { margin-top: 10px; }
+.toc a { white-space: nowrap; }
+.years { font-variant-numeric: tabular-nums; }
+.band-right.toc { max-width: none; }
 
-.row--contact { min-height: 0; grid-template-columns: 1fr; }
-.row--contact .cell-text { padding-block: 42px; }
-
-/* gallery: starts where the bio portrait sits and bleeds off the right edge */
+/* gallery band: its own rectangle, split from the text by a dashed line */
+.band--gallery {
+  border-top: 1px dashed var(--rule);
+  height: clamp(260px, 38vw, 460px);
+  overflow: hidden;
+}
 .strip {
   position: absolute;
-  inset: 9.31% 0 9.31% 0;
+  inset: 40px 0;
   display: flex;
-  gap: 12px;
-  padding-left: 8.8%;
-  scroll-padding-left: 8.8%;
+  gap: 16px;
+  padding-left: 40px;
+  scroll-padding-left: 40px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   overscroll-behavior-x: contain;
   cursor: grab;
+  mask-image: linear-gradient(to right, #000 88%, transparent);
 }
 .strip::-webkit-scrollbar { display: none; }
-.strip::after { content: ''; flex: 0 0 1px; }
+.strip::after { content: ''; flex: 0 0 24px; }
 .strip.dragging { scroll-snap-type: none; cursor: grabbing; user-select: none; }
 .strip.dragging * { pointer-events: none; }
-.frame { flex: none; height: 100%; scroll-snap-align: start; overflow: hidden; }
+.frame {
+  flex: none;
+  height: 100%;
+  scroll-snap-align: start;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px var(--tile-edge);
+}
 .frame-large { aspect-ratio: 16 / 10; }
 .frame-medium { aspect-ratio: 4 / 5; }
 .media { display: block; width: 100%; height: 100%; object-fit: cover; }
 .placeholder { background: var(--placeholder); }
 
-/* intro preview: the hovered company's first image */
-.preview {
-  position: absolute;
-  inset: 9.31% 0 9.31% 8.8%;
-  opacity: 0;
-  transition: opacity 0.4s var(--ease-out);
-}
-.preview.on { opacity: 1; }
-.preview .frame { height: 100%; }
-
 @media (prefers-reduced-motion: reduce) {
-  html, body, .link-label::after, .preview, .detail { transition: none; }
+  html, body, .link-label::after, .detail { transition: none; }
 }
 
-@media (max-width: 900px) {
-  :root { --s: min(100vw - 48px, 560px); }
-  .column { width: var(--s); padding-block: 72px 48px; }
-  .row { grid-template-columns: var(--s); grid-template-rows: auto var(--s); min-height: 0; }
-  .cell-text { padding: 40px 24px; }
-  .cell-media { border-left: 0; border-top: 1px solid var(--rule); }
-  .row--contact { grid-template-rows: auto; }
+@media (max-width: 800px) {
+  .frame-box { width: calc(100vw - 32px); margin-top: 56px; }
+  .band--text { grid-template-columns: minmax(0, 1fr); padding: 40px 20px; }
+  .toc li { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0; }
+  .toc li .muted:not(.years) { grid-column: 1 / -1; grid-row: 2; }
+  .band--gallery { height: clamp(240px, 70vw, 360px); }
+  .strip { inset: 20px 0; padding-left: 20px; scroll-padding-left: 20px; gap: 12px; }
 }

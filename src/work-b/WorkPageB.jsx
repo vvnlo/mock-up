@@ -1,9 +1,9 @@
-// Version B: styled after vvnlo.com (one type size, hairline rules, text beside image),
-// in black and white. Shares content and the gallery with version A.
+// Version B: styled after vvnlo.com (one type size, hairline rules, underline links),
+// in black and white. Each company is a text band above a full-width gallery band.
+// Shares content and the gallery with version A.
 import { useEffect, useState } from 'react'
 import { intro, companies } from '../work/content.js'
 import Gallery from '../work/Gallery.jsx'
-import Media from '../work/Media.jsx'
 
 function readTheme() {
   try {
@@ -84,16 +84,17 @@ function Logo({ src }) {
 
 function Company({ c }) {
   return (
-    <section className="row" id={c.id} aria-labelledby={`${c.id}-headline`}>
-      <span className="rule rule--top" aria-hidden="true" />
-      <div className="cell cell-text">
-        <p className="greeting">
-          {c.name}
-          <Logo src={c.logo} />
-        </p>
-        <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
-        <p className="muted">{c.position}, {c.years}</p>
-        <div className="about detail">
+    <section className="section" id={c.id} aria-labelledby={`${c.id}-headline`}>
+      <div className="band band--text">
+        <div className="band-left">
+          <p className="greeting">
+            {c.name}
+            <Logo src={c.logo} />
+          </p>
+          <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
+          <p className="muted">{c.position}, {c.years}</p>
+        </div>
+        <div className="band-right about detail">
           {c.summary.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
           <p>
             Case studies:{' '}
@@ -106,7 +107,7 @@ function Company({ c }) {
           </p>
         </div>
       </div>
-      <div className="cell cell-media">
+      <div className="band band--gallery">
         <Gallery frames={c.gallery} label={`${c.name} work`} />
       </div>
     </section>
@@ -115,7 +116,6 @@ function Company({ c }) {
 
 export default function WorkPageB() {
   const [skim, setSkim] = useState(false)
-  const [preview, setPreview] = useState(companies[0].id)
 
   return (
     <div className={skim ? 'site skimming' : 'site'}>
@@ -129,48 +129,38 @@ export default function WorkPageB() {
         <ThemeToggle />
       </div>
 
-      <main className="column">
+      <main className="frame-box">
         <span className="rule rule--left" aria-hidden="true" />
         <span className="rule rule--right" aria-hidden="true" />
 
-        <section className="row row--intro" aria-labelledby="page-title">
-          <span className="rule rule--top" aria-hidden="true" />
-          <div className="cell cell-text">
-            <h1 className="greeting" id="page-title">{intro.title}</h1>
-            <ol className="toc">
+        <section className="section" aria-labelledby="page-title">
+          <div className="band band--text">
+            <div className="band-left">
+              <h1 className="greeting" id="page-title">{intro.title}</h1>
+            </div>
+            <ol className="band-right toc">
               {companies.map((c) => (
                 <li key={c.id}>
-                  <a
-                    href={`#${c.id}`}
-                    onMouseEnter={() => setPreview(c.id)}
-                    onFocus={() => setPreview(c.id)}
-                  >
+                  <a href={`#${c.id}`}>
                     <Label>{c.name}</Label>
                     <Logo src={c.logo} />
                   </a>
-                  <span className="muted">{c.title}, {c.years}</span>
+                  <span className="muted">{c.title}</span>
+                  <span className="muted years">{c.years}</span>
                 </li>
               ))}
             </ol>
-          </div>
-          <div className="cell cell-media cell-preview" aria-hidden="true">
-            {companies.map((c) => (
-              <div className={c.id === preview ? 'preview on' : 'preview'} key={c.id}>
-                <div className={`frame frame-${c.gallery[0].size}`}>
-                  <Media item={c.gallery[0]} />
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
         {companies.map((c) => <Company c={c} key={c.id} />)}
 
-        <section className="row row--contact">
-          <span className="rule rule--top" aria-hidden="true" />
-          <span className="rule rule--bottom" aria-hidden="true" />
-          <div className="cell cell-text detail">
-            <p>
+        <section className="section">
+          <div className="band band--text detail">
+            <div className="band-left">
+              <p className="greeting">Contact</p>
+            </div>
+            <p className="band-right">
               You can reach me at{' '}
               <span className="nowrap">
                 <a href={`mailto:${intro.email}`}><Label>{intro.email}</Label></a>
