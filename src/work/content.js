@@ -45,7 +45,7 @@ export const companies = [
       { size: 'large', ratio: '2000 / 1278', src: '/work/brightwave/sources.webp', title: 'Sources and chat in a project' },
       { size: 'large', ratio: '2000 / 1278', src: '/work/brightwave/lbo-model.webp', title: 'Agent building an LBO model' },
       { size: 'large', ratio: '2000 / 1278', src: '/work/brightwave/details.webp', title: 'Evidence, outputs and agents up close' },
-      { size: 'large', ratio: '2000 / 1068', src: '/work/brightwave/mobile.webp', title: 'Brightwave on mobile' },
+      { size: 'large', ratio: '2000 / 1296', src: '/work/brightwave/mobile.webp', title: 'Brightwave on mobile' },
     ],
   },
   {
