@@ -13,6 +13,7 @@
 //   src:  put files in public/work/<company>/ and reference them as '/work/<company>/file.png'.
 //         .mp4 / .webm play as muted loops (use these instead of .gif, they're much smaller).
 //         Leave src out to show a grey placeholder.
+//   ratio: optional 'width / height' so the frame matches the image instead of cropping it.
 //   title is used as the image's alt text.
 
 export const intro = {
@@ -41,11 +42,10 @@ export const companies = [
       { title: 'Tounami', href: '#' },
     ],
     gallery: [
-      { size: 'large', title: 'Research workspace' },
-      { size: 'medium', title: 'Source citations' },
-      { size: 'medium', title: 'Agent progress' },
-      { size: 'large', title: 'Tounami policy builder' },
-      { size: 'medium', title: 'Tounami audit log' },
+      { size: 'large', ratio: '2000 / 1278', src: '/work/brightwave/sources.webp', title: 'Sources and chat in a project' },
+      { size: 'large', ratio: '2000 / 1278', src: '/work/brightwave/lbo-model.webp', title: 'Agent building an LBO model' },
+      { size: 'large', ratio: '2000 / 1278', src: '/work/brightwave/details.webp', title: 'Evidence, outputs and agents up close' },
+      { size: 'large', ratio: '2000 / 1068', src: '/work/brightwave/mobile.webp', title: 'Brightwave on mobile' },
     ],
   },
   {

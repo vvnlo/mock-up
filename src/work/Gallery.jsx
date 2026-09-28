@@ -48,7 +48,11 @@ export default function Gallery({ frames, label }) {
       onPointerCancel={endDrag}
     >
       {frames.map((frame, i) => (
-        <div className={`frame frame-${frame.size}${i > 0 ? ' detail' : ''}`} key={frame.title + i}>
+        <div
+          className={`frame frame-${frame.size}${i > 0 ? ' detail' : ''}`}
+          style={frame.ratio ? { aspectRatio: frame.ratio } : undefined}
+          key={frame.title + i}
+        >
           <Media item={frame} />
         </div>
       ))}
