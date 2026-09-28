@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: new URL('./index.html', import.meta.url).pathname,
         work: new URL('./work/index.html', import.meta.url).pathname,
+        workB: new URL('./work-b/index.html', import.meta.url).pathname,
       },
     },
   },

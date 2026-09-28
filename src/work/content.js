@@ -1,6 +1,7 @@
 // All copy and media for the work page lives here.
 //
 // Each company:
+//   logo      → small tile next to the company name (version B)
 //   title     → shown in the list at the top
 //   headline  → the large line in the company's section
 //   position  → the grey line under the headline
@@ -18,11 +19,15 @@ export const intro = {
   name: 'Vivian Lo',
   bioUrl: 'https://vvnlo.com/',
   title: 'Selected work',
+  email: 'hello@vvnlo.com',
+  linkedin: 'https://www.linkedin.com/in/lovivian/',
+  x: 'https://x.com/loviv',
 }
 
 export const companies = [
   {
     id: 'brightwave',
+    logo: '/work/logos/brightwave.svg',
     name: 'Brightwave',
     title: 'Head of Design, Founding Designer',
     years: '2025–now',
@@ -45,6 +50,7 @@ export const companies = [
   },
   {
     id: 'shopify',
+    logo: '/work/logos/shopify.png',
     name: 'Shopify',
     title: 'Product Design Manager, Design Lead',
     years: '2022–25',
@@ -70,6 +76,7 @@ export const companies = [
   },
   {
     id: 'n26',
+    logo: '/work/logos/n26.png',
     name: 'N26',
     title: 'Head of Design, Engagement and US',
     years: '2018–2022',

@@ -4,6 +4,7 @@ This repo holds two pages:
 
 - `/` is the screenshot mockup tool.
 - `/work/` is the portfolio work page (the "See my work" page linked from vvnlo.com).
+- `/work-b/` is version B of the same page, styled after vvnlo.com. It shares `src/work/content.js`.
 
 Run `npm install`, then `npm run dev` and open http://localhost:5173/work/.
 
