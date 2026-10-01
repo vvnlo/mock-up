@@ -4,6 +4,7 @@
   --page: #ffffff;
   --ink: #000000;
   --muted: rgb(0 0 0 / 0.5);
+  --icon: rgb(0 0 0 / 0.32);
   --rule: rgb(0 0 0 / 0.1);
   --link-rest: #e4e4e4;
   --fill: #f3f3f3;
@@ -19,6 +20,7 @@
     --page: #000000;
     --ink: #ffffff;
     --muted: rgb(255 255 255 / 0.55);
+    --icon: rgb(255 255 255 / 0.38);
     --rule: rgb(255 255 255 / 0.12);
     --link-rest: #1c1c1c;
     --fill: #141414;
@@ -31,6 +33,7 @@
   --page: #000000;
   --ink: #ffffff;
   --muted: rgb(255 255 255 / 0.55);
+  --icon: rgb(255 255 255 / 0.38);
   --rule: rgb(255 255 255 / 0.12);
   --link-rest: #1c1c1c;
   --fill: #141414;
@@ -103,7 +106,8 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 }
 .brand .link-label::before { display: none; }
 .topbar-right { display: flex; align-items: center; gap: 16px; font-size: 13px; }
-.topbar .icon-button { width: auto; }
+.topbar .icon-button { width: auto; color: var(--icon); }
+.topbar .icon-button:hover { color: var(--ink); }
 
 .skim, .icon-button, .copy-button {
   padding: 0;
