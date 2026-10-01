@@ -26,7 +26,7 @@ export const intro = {
   email: 'hello@vvnlo.com',
   linkedin: 'https://www.linkedin.com/in/lovivian/',
   x: 'https://x.com/loviv',
-  // Link for the "View resume" button in version B. Replace with your resume URL.
+  // Link for the "View resume" button. Replace with your resume URL.
   resumeUrl: '#',
 }
 

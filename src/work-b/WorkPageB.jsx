@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react'
 import { intro, companies } from '../work/content.js'
 import Gallery from '../work/Gallery.jsx'
+import ResumeButton from '../work/ResumeButton.jsx'
 
 function readTheme() {
   try {
@@ -153,12 +154,7 @@ export default function WorkPageB() {
                 </li>
               ))}
             </ol>
-            <a className="cta" href={intro.resumeUrl} target="_blank" rel="noopener noreferrer">
-              View resume
-              <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M3.5 12.5l9-9M5 3.5h7.5V11" />
-              </svg>
-            </a>
+            <ResumeButton href={intro.resumeUrl} />
           </div>
         </section>
 

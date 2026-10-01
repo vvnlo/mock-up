@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { intro, companies } from './content.js'
 import Gallery from './Gallery.jsx'
+import ResumeButton from './ResumeButton.jsx'
 
 function SkimToggle({ on, onChange }) {
   return (
@@ -63,6 +64,7 @@ export default function WorkPage() {
             </li>
           ))}
         </ol>
+        <ResumeButton href={intro.resumeUrl} />
 
         {companies.map((c) => <Company c={c} key={c.id} />)}
       </div>

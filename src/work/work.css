@@ -126,6 +126,25 @@ h1 {
 .toc a:hover .toc-title { text-decoration: underline; }
 .toc-years { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
+/* resume button: border matches the separator lines */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 8px 14px 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.cta:hover { border-color: var(--ink); }
+.cta svg { transition: transform 0.25s ease; }
+.cta:hover svg { transform: translate(2px, -2px); }
+@media (prefers-reduced-motion: reduce) { .cta, .cta svg { transition: none; } }
+
 /* company section */
 .company { padding-top: clamp(64px, 9vw, 96px); scroll-margin-top: 16px; }
 .company-name { margin: 0; font-size: 14px; }
