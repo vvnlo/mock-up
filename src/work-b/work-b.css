@@ -149,18 +149,27 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   line-height: 1.2;
   text-wrap: balance;
 }
-.blurb { margin-top: 21px; max-width: 420px; }
+.blurb { margin-top: 14px; max-width: 560px; }
+
+/* intro: one column, like version A */
+.band--intro { padding: 84px 40px; }
+.band--intro .toc { margin-top: 42px; }
 /* company name and logo sit above both columns, so the headline and paragraphs share a top line */
 .band-label { grid-column: 1 / -1; margin-bottom: 7px; }
 .band-right { max-width: 480px; }
 .about p + p { margin-top: 21px; }
 
 .toc { list-style: none; padding: 0; }
-.toc li { display: grid; grid-template-columns: 140px minmax(0, 1fr) auto; gap: 16px; }
-.toc li + li { margin-top: 10px; }
+.toc li {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr) auto;
+  gap: 16px;
+  padding-block: 14px;
+  border-top: 1px solid var(--rule);
+}
+.toc li:last-child { border-bottom: 1px solid var(--rule); }
 .toc a { white-space: nowrap; }
 .years { font-variant-numeric: tabular-nums; }
-.band-right.toc { max-width: none; }
 
 /* gallery band: its own rectangle under the text, tall enough to read UI detail */
 .band--gallery {
@@ -204,6 +213,8 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 @media (max-width: 800px) {
   .frame-box { width: calc(100vw - 32px); margin-top: 56px; }
   .band--text { grid-template-columns: minmax(0, 1fr); padding: 40px 20px; }
+  .band--intro { padding: 40px 20px; }
+  .band--intro .toc { margin-top: 28px; }
   .toc li { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0; }
   .toc li .muted:not(.years) { grid-column: 1 / -1; grid-row: 2; }
   .band--gallery { height: clamp(240px, 70vw, 360px); }

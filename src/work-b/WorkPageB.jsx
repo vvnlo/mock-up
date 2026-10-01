@@ -138,12 +138,10 @@ export default function WorkPageB() {
         <span className="rule rule--right" aria-hidden="true" />
 
         <section className="section" aria-labelledby="page-title">
-          <div className="band band--text">
-            <div className="band-left">
-              <h1 className="greeting" id="page-title">{intro.title}</h1>
-              <p className="blurb">{intro.blurb}</p>
-            </div>
-            <ol className="band-right toc">
+          <div className="band band--intro">
+            <h1 className="headline" id="page-title">{intro.title}</h1>
+            <p className="blurb">{intro.blurb}</p>
+            <ol className="toc">
               {companies.map((c) => (
                 <li key={c.id}>
                   <a href={`#${c.id}`}>
