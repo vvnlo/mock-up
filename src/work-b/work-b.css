@@ -248,9 +248,9 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 .badges { display: inline-flex; gap: 4px; margin-left: 8px; vertical-align: 1px; }
 .badge-mode {
   font-size: 11px;
-  line-height: 16px;
+  line-height: 18px;
   padding: 0 6px;
-  border: 1px solid var(--rule);
+  background: var(--fill);
   border-radius: 4px;
   color: var(--muted);
   white-space: nowrap;
