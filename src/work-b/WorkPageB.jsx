@@ -91,11 +91,10 @@ function Company({ c }) {
         <p className="greeting band-label">
           {c.name}
           <Logo src={c.logo} />
-          <Badges modes={c.modes} />
         </p>
         <div className="band-left">
           <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
-          <p className="muted">{c.position} · <span className="nowrap">{c.years}</span></p>
+          <p className="muted meta">{c.position} · <Badges modes={c.modes} className="meta-badges" /> · <span className="nowrap">{c.years}</span></p>
         </div>
         <div className="band-right about detail">
           {c.summary.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}

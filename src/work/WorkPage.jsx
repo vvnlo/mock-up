@@ -59,8 +59,7 @@ export default function WorkPage() {
             <li key={c.id}>
               <a href={`#${c.id}`}>
                 <span className="toc-name">{c.name}</span>
-                <span className="toc-title">{c.title}</span>
-                <Badges modes={c.modes} className="toc-badges" />
+                <span className="toc-title">{c.title}<Badges modes={c.modes} /></span>
                 <span className="toc-years">{c.years}</span>
               </a>
             </li>
