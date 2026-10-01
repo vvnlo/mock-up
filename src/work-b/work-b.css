@@ -185,10 +185,15 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 .toc { list-style: none; padding: 0; }
 .toc li {
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr) auto;
+  grid-template-columns: 180px max-content minmax(0, 1fr) auto;
+  grid-template-areas: 'name title badges years';
   gap: 16px;
   padding-block: 8px;
 }
+.toc li > a { grid-area: name; }
+.toc-title { grid-area: title; }
+.badges.toc-badges { grid-area: badges; margin-left: -8px; align-self: center; }
+.toc li .years { grid-area: years; }
 .toc a { white-space: nowrap; }
 .years { font-variant-numeric: tabular-nums; }
 
@@ -238,8 +243,8 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   .footer { padding: 96px 20px 36px; }
   .band--intro .toc { margin-top: 28px; }
   .cta { margin-top: 28px; }
-  .toc li { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0; }
-  .toc li .muted:not(.years) { grid-column: 1 / -1; grid-row: 2; }
+  .toc li { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'name years' 'title badges'; row-gap: 0; }
+  .badges.toc-badges { margin-left: 0; justify-self: end; }
   .band--gallery { height: clamp(240px, 70vw, 360px); }
   .strip { inset: 0 0 20px; padding-left: 20px; scroll-padding-left: 20px; gap: 12px; }
 }

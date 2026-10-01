@@ -151,7 +151,8 @@ export default function WorkPageB() {
                     <Label>{c.name}</Label>
                     <Logo src={c.logo} />
                   </a>
-                  <span className="muted">{c.title}<Badges modes={c.modes} /></span>
+                  <span className="muted toc-title">{c.title}</span>
+                  <Badges modes={c.modes} className="toc-badges" />
                   <span className="muted years">{c.years}</span>
                 </li>
               ))}
