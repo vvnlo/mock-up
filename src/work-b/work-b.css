@@ -167,11 +167,11 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   align-items: center;
   gap: 6px;
   margin-top: 42px;
-  padding: 5px 10px 5px 12px;
+  padding: 7px 12px 7px 14px;
   border: 1px solid var(--rule);
   border-radius: 7px;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 14px;
   transition: background-color 0.2s;
 }
 .cta:hover { background: var(--fill); }
