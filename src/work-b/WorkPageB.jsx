@@ -105,9 +105,9 @@ function Company({ c }) {
                 <span key={cs.title}>
                   <a className="case-link" href={cs.href} aria-label={`${cs.title} (password protected)`}>
                     <Label>{cs.title}</Label>
-                    {/* lock-2-fill from Remix Icon (Apache-2.0) */}
-                    <svg className="lock" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
-                      <path d="M18 8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8ZM11 15.7324V18H13V15.7324C13.5978 15.3866 14 14.7403 14 14C14 12.8954 13.1046 12 12 12C10.8954 12 10 12.8954 10 14C10 14.7403 10.4022 15.3866 11 15.7324ZM16 8V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8H16Z" />
+                    <svg className="lock" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
+                      <rect x="2" y="5.5" width="8" height="5.5" rx="1" />
+                      <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" />
                     </svg>
                   </a>
                   {i < c.caseStudies.length - 1 ? ', ' : '.'}
