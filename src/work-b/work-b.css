@@ -6,6 +6,7 @@
   --muted: rgb(0 0 0 / 0.5);
   --rule: rgb(0 0 0 / 0.1);
   --link-rest: #e4e4e4;
+  --fill: #f3f3f3;
   --tile-edge: rgb(0 0 0 / 0.08);
   --placeholder: #ededed;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -20,6 +21,7 @@
     --muted: rgb(255 255 255 / 0.55);
     --rule: rgb(255 255 255 / 0.12);
     --link-rest: #1c1c1c;
+    --fill: #141414;
     --tile-edge: rgb(255 255 255 / 0.08);
     --placeholder: #141414;
   }
@@ -31,6 +33,7 @@
   --muted: rgb(255 255 255 / 0.55);
   --rule: rgb(255 255 255 / 0.12);
   --link-rest: #1c1c1c;
+  --fill: #141414;
   --tile-edge: rgb(255 255 255 / 0.08);
   --placeholder: #141414;
 }
@@ -162,16 +165,16 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-top: 42px;
-  padding: 8px 14px 8px 16px;
+  padding: 5px 10px 5px 12px;
   border: 1px solid var(--rule);
-  border-radius: 8px;
+  border-radius: 7px;
   font-weight: 500;
-  font-size: 14px;
-  transition: border-color 0.2s, background-color 0.2s;
+  font-size: 13px;
+  transition: background-color 0.2s;
 }
-.cta:hover { border-color: var(--ink); }
+.cta:hover { background: var(--fill); }
 .cta svg { transition: transform 0.25s var(--ease-out); }
 .cta:hover svg { transform: translate(2px, -2px); }
 /* company name and logo sit above both columns, so the headline and paragraphs share a top line */

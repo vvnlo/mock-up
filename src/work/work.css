@@ -6,6 +6,7 @@
   --muted: #8a8a8a;
   --line: #d9d9d9;
   --link-rest: #e4e4e4;
+  --fill: #f3f3f3;
   --placeholder: #d9d9d9;
   --accent: #111111;
 
@@ -23,6 +24,7 @@
     --muted: #7d7d7d;
     --line: #2e2e2e;
     --link-rest: #1c1c1c;
+    --fill: #1a1a1a;
     --placeholder: #262626;
     --accent: #f2f2f2;
   }
@@ -132,17 +134,17 @@ h1 {
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-top: 32px;
-  padding: 8px 14px 8px 16px;
+  padding: 5px 10px 5px 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 7px;
+  font-size: 13px;
   font-weight: 500;
   text-decoration: none;
-  transition: border-color 0.2s;
+  transition: background-color 0.2s;
 }
-.cta:hover { border-color: var(--ink); }
+.cta:hover { background: var(--fill); }
 .cta svg { transition: transform 0.25s ease; }
 .cta:hover svg { transform: translate(2px, -2px); }
 @media (prefers-reduced-motion: reduce) { .cta, .cta svg { transition: none; } }
