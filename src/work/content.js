@@ -118,7 +118,7 @@ export const companies = [
     name: 'IDEO',
     title: 'Project Lead',
     modes: ['IC'],
-    years: '[Years]',
+    years: '2013–18',
     headline: '[One line on the work at IDEO]',
     position: 'Project Lead',
     summary: [
