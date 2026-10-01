@@ -141,7 +141,14 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   gap: 21px 48px;
   padding: 84px 40px;
 }
-.headline { margin-top: 21px; }
+.headline {
+  margin: 10px 0 6px;
+  font-size: clamp(24px, 3.4vw, 32px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
 .blurb { margin-top: 21px; max-width: 420px; }
 .band-right { max-width: 480px; }
 .about p + p { margin-top: 21px; }
@@ -170,7 +177,6 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   scrollbar-width: none;
   overscroll-behavior-x: contain;
   cursor: grab;
-  mask-image: linear-gradient(to right, #000 88%, transparent);
 }
 .strip::-webkit-scrollbar { display: none; }
 .strip::after { content: ''; flex: 0 0 24px; }

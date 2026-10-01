@@ -16,7 +16,7 @@ function Company({ c }) {
     <section className="company" id={c.id} aria-labelledby={`${c.id}-headline`}>
       <p className="company-name">{c.name}</p>
       <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
-      <p className="meta">{c.position} · {c.years}</p>
+      <p className="meta">{c.position} · <span className="nowrap">{c.years}</span></p>
 
       <div className="about detail">
         {c.summary.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}

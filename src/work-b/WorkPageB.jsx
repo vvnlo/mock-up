@@ -92,7 +92,7 @@ function Company({ c }) {
             <Logo src={c.logo} />
           </p>
           <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
-          <p className="muted">{c.position} · {c.years}</p>
+          <p className="muted">{c.position} · <span className="nowrap">{c.years}</span></p>
         </div>
         <div className="band-right about detail">
           {c.summary.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
