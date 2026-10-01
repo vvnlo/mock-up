@@ -16,25 +16,24 @@ function Company({ c }) {
     <section className="company" id={c.id} aria-labelledby={`${c.id}-headline`}>
       <p className="company-name">{c.name}</p>
       <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
-      <p className="meta">
-        <span>{c.position}</span>
-        <span>{c.years}</span>
-      </p>
+      <p className="meta">{c.position} · {c.years}</p>
 
       <div className="about detail">
         {c.summary.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
-        <p>
-          Case studies:{' '}
-          {c.caseStudies.map((cs, i) => (
-            <span key={cs.title}>
-              <a href={cs.href}>{cs.title}</a>
-              {i < c.caseStudies.length - 1 && ', '}
-            </span>
-          ))}
-        </p>
+        {c.caseStudies.length > 0 && (
+          <p>
+            Case studies:{' '}
+            {c.caseStudies.map((cs, i) => (
+              <span key={cs.title}>
+                <a href={cs.href}>{cs.title}</a>
+                {i < c.caseStudies.length - 1 && ', '}
+              </span>
+            ))}
+          </p>
+        )}
       </div>
 
-      <Gallery frames={c.gallery} label={`${c.name} work`} />
+      {c.gallery.length > 0 && <Gallery frames={c.gallery} label={`${c.name} work`} />}
     </section>
   )
 }
@@ -51,6 +50,7 @@ export default function WorkPage() {
         </nav>
 
         <h1>{intro.title}</h1>
+        <p className="blurb">{intro.blurb}</p>
 
         <ol className="toc">
           {companies.map((c) => (

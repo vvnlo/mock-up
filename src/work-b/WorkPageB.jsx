@@ -92,24 +92,28 @@ function Company({ c }) {
             <Logo src={c.logo} />
           </p>
           <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
-          <p className="muted">{c.position}, {c.years}</p>
+          <p className="muted">{c.position} · {c.years}</p>
         </div>
         <div className="band-right about detail">
           {c.summary.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
-          <p>
-            Case studies:{' '}
-            {c.caseStudies.map((cs, i) => (
-              <span key={cs.title}>
-                <a href={cs.href}><Label>{cs.title}</Label></a>
-                {i < c.caseStudies.length - 1 ? ', ' : '.'}
-              </span>
-            ))}
-          </p>
+          {c.caseStudies.length > 0 && (
+            <p>
+              Case studies:{' '}
+              {c.caseStudies.map((cs, i) => (
+                <span key={cs.title}>
+                  <a href={cs.href}><Label>{cs.title}</Label></a>
+                  {i < c.caseStudies.length - 1 ? ', ' : '.'}
+                </span>
+              ))}
+            </p>
+          )}
         </div>
       </div>
-      <div className="band band--gallery">
-        <Gallery frames={c.gallery} label={`${c.name} work`} />
-      </div>
+      {c.gallery.length > 0 && (
+        <div className="band band--gallery">
+          <Gallery frames={c.gallery} label={`${c.name} work`} />
+        </div>
+      )}
     </section>
   )
 }
@@ -137,6 +141,7 @@ export default function WorkPageB() {
           <div className="band band--text">
             <div className="band-left">
               <h1 className="greeting" id="page-title">{intro.title}</h1>
+              <p className="blurb">{intro.blurb}</p>
             </div>
             <ol className="band-right toc">
               {companies.map((c) => (

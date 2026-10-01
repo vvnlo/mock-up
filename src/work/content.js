@@ -6,6 +6,7 @@
 //   headline  → the large line in the company's section
 //   position  → the grey line under the headline
 //   summary   → one or more paragraphs
+//   caseStudies, gallery → either can be an empty list to hide it
 //
 // Gallery frames:
 //   size: 'large'  → 16:10, for full-screen UI
@@ -20,6 +21,8 @@ export const intro = {
   name: 'Vivian Lo',
   bioUrl: 'https://vvnlo.com/',
   title: 'Selected work',
+  blurb:
+    'My career has moved fluidly between IC and management, shaping how I lead and how I design. The work below spans hands-on product craft, team leadership, and product direction.',
   email: 'hello@vvnlo.com',
   linkedin: 'https://www.linkedin.com/in/lovivian/',
   x: 'https://x.com/loviv',
@@ -102,5 +105,20 @@ export const companies = [
       { size: 'large', ratio: '2000 / 1250', src: '/work/n26/5.webp', title: 'Actions, transfers, MoneyBeam and ATM finder' },
       { size: 'large', ratio: '2000 / 1250', src: '/work/n26/6.webp', title: 'Cashback and Spaces' },
     ],
+  },
+  {
+    id: 'ideo',
+    logo: '/work/logos/ideo.png',
+    name: 'IDEO',
+    title: 'Project Lead',
+    years: '[Years]',
+    headline: '[One line on the work at IDEO]',
+    position: 'Project Lead',
+    summary: [
+      '[A sentence or two on the kind of projects you led at IDEO and for whom.]',
+    ],
+    // No case studies or images yet: the case study line and gallery are hidden when these are empty.
+    caseStudies: [],
+    gallery: [],
   },
 ]
