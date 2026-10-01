@@ -125,15 +125,16 @@ export default function WorkPageB() {
 
   return (
     <div className={skim ? 'site skimming' : 'site'}>
-      <nav className="corner corner--left">
-        <a href={intro.bioUrl}><Label>← {intro.name}</Label></a>
-      </nav>
-      <div className="corner corner--right">
-        <button type="button" className="skim" aria-pressed={skim} onClick={() => setSkim(!skim)}>
-          30-second read
-        </button>
-        <ThemeToggle />
-      </div>
+      <header className="topbar">
+        <a className="brand" href={intro.bioUrl}><Label>{intro.name}</Label></a>
+        <div className="topbar-right">
+          <button type="button" className="skim" aria-pressed={skim} onClick={() => setSkim(!skim)}>
+            <span className="switch" aria-hidden="true" />
+            30s read
+          </button>
+          <ThemeToggle />
+        </div>
+      </header>
 
       <main className="frame-box">
         <span className="rule rule--left" aria-hidden="true" />
