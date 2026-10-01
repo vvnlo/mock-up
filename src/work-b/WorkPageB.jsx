@@ -86,11 +86,11 @@ function Company({ c }) {
   return (
     <section className="section" id={c.id} aria-labelledby={`${c.id}-headline`}>
       <div className="band band--text">
+        <p className="greeting band-label">
+          {c.name}
+          <Logo src={c.logo} />
+        </p>
         <div className="band-left">
-          <p className="greeting">
-            {c.name}
-            <Logo src={c.logo} />
-          </p>
           <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
           <p className="muted">{c.position} · <span className="nowrap">{c.years}</span></p>
         </div>

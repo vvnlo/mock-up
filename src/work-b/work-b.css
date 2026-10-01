@@ -142,7 +142,7 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   padding: 84px 40px;
 }
 .headline {
-  margin: 10px 0 6px;
+  margin: 0 0 6px;
   font-size: clamp(24px, 3.4vw, 32px);
   font-weight: 400;
   letter-spacing: -0.01em;
@@ -150,6 +150,8 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   text-wrap: balance;
 }
 .blurb { margin-top: 21px; max-width: 420px; }
+/* company name and logo sit above both columns, so the headline and paragraphs share a top line */
+.band-label { grid-column: 1 / -1; margin-bottom: 7px; }
 .band-right { max-width: 480px; }
 .about p + p { margin-top: 21px; }
 
