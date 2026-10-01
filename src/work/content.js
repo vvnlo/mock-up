@@ -47,7 +47,6 @@ export const companies = [
     ],
     caseStudies: [
       { title: 'Brightwave research platform', href: '#' },
-      { title: 'Tounami', href: '#' },
     ],
     gallery: [
       { size: 'large', ratio: '2400 / 1534', src: '/work/brightwave/1.webp', title: 'Brightwave home with recent projects' },

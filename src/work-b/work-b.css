@@ -286,3 +286,7 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   white-space: nowrap;
 }
 .badges.meta-badges { margin-left: 0; vertical-align: 1px; }
+
+/* case study links: lock icon after each title (they're password protected) */
+.case-link { white-space: nowrap; }
+.case-link .lock { margin-left: 4px; vertical-align: -1px; fill: none; stroke: var(--muted); stroke-width: 1.3; }

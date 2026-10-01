@@ -24,7 +24,7 @@ function Company({ c }) {
         {c.summary.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
         {c.caseStudies.length > 0 && (
           <p>
-            Case studies:{' '}
+            {c.caseStudies.length > 1 ? 'Case studies' : 'Case study'}:{' '}
             {c.caseStudies.map((cs, i) => (
               <span key={cs.title}>
                 <a href={cs.href}>{cs.title}</a>
