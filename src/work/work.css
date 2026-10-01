@@ -5,6 +5,7 @@
   --body: #555555;
   --muted: #8a8a8a;
   --line: #d9d9d9;
+  --link-rest: #e4e4e4;
   --placeholder: #d9d9d9;
   --accent: #111111;
 
@@ -21,6 +22,7 @@
     --body: #b3b3b3;
     --muted: #7d7d7d;
     --line: #2e2e2e;
+    --link-rest: #1c1c1c;
     --placeholder: #262626;
     --accent: #f2f2f2;
   }
@@ -161,8 +163,8 @@ h1 {
 .about { margin-top: 32px; font-size: 14.5px; color: var(--body); }
 .about p { margin: 0 0 20px; }
 .about p:last-child { margin-bottom: 0; }
-.about a { text-underline-offset: 3px; text-decoration-thickness: 1px; }
-.about a:hover { color: var(--ink); text-decoration-thickness: 2px; }
+.about a { text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--link-rest); transition: text-decoration-color 0.2s, color 0.2s; }
+.about a:hover { color: var(--ink); text-decoration-color: var(--ink); }
 
 /* gallery strip */
 .strip {

@@ -5,7 +5,7 @@
   --ink: #000000;
   --muted: rgb(0 0 0 / 0.5);
   --rule: rgb(0 0 0 / 0.1);
-  --link-rest: rgb(0 0 0 / 0.3);
+  --link-rest: #e4e4e4;
   --tile-edge: rgb(0 0 0 / 0.08);
   --placeholder: #ededed;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -19,7 +19,7 @@
     --ink: #ffffff;
     --muted: rgb(255 255 255 / 0.55);
     --rule: rgb(255 255 255 / 0.12);
-    --link-rest: rgb(255 255 255 / 0.3);
+    --link-rest: #1c1c1c;
     --tile-edge: rgb(255 255 255 / 0.08);
     --placeholder: #141414;
   }
@@ -30,7 +30,7 @@
   --ink: #ffffff;
   --muted: rgb(255 255 255 / 0.55);
   --rule: rgb(255 255 255 / 0.12);
-  --link-rest: rgb(255 255 255 / 0.3);
+  --link-rest: #1c1c1c;
   --tile-edge: rgb(255 255 255 / 0.08);
   --placeholder: #141414;
 }
