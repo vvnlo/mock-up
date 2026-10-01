@@ -160,12 +160,8 @@ export default function WorkPageB() {
 
         {companies.map((c) => <Company c={c} key={c.id} />)}
 
-        <section className="section">
-          <div className="band band--text detail">
-            <div className="band-left">
-              <p className="greeting">Contact</p>
-            </div>
-            <p className="band-right">
+        <footer className="section footer detail">
+            <p>
               You can reach me at{' '}
               <span className="nowrap">
                 <a href={`mailto:${intro.email}`}><Label>{intro.email}</Label></a>
@@ -174,8 +170,7 @@ export default function WorkPageB() {
               or on <a href={intro.linkedin}><Label>LinkedIn</Label></a> and{' '}
               <a href={intro.x}><Label>X</Label></a>.
             </p>
-          </div>
-        </section>
+        </footer>
       </main>
     </div>
   )
