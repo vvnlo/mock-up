@@ -152,7 +152,7 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 .blurb { margin-top: 14px; max-width: 560px; }
 
 /* footer: one line of contact details */
-.footer { padding: 160px 40px 48px; }
+.footer { padding: 160px 40px 48px; color: var(--muted); }
 
 /* intro: one column, like version A */
 .band--intro { padding: 84px 40px; }
