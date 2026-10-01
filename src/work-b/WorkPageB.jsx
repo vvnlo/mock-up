@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { intro, companies } from '../work/content.js'
 import Gallery from '../work/Gallery.jsx'
 import ResumeButton from '../work/ResumeButton.jsx'
+import Badges from '../work/Badges.jsx'
 
 function readTheme() {
   try {
@@ -90,6 +91,7 @@ function Company({ c }) {
         <p className="greeting band-label">
           {c.name}
           <Logo src={c.logo} />
+          <Badges modes={c.modes} />
         </p>
         <div className="band-left">
           <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
@@ -149,7 +151,7 @@ export default function WorkPageB() {
                     <Label>{c.name}</Label>
                     <Logo src={c.logo} />
                   </a>
-                  <span className="muted">{c.title}</span>
+                  <span className="muted">{c.title}<Badges modes={c.modes} /></span>
                   <span className="muted years">{c.years}</span>
                 </li>
               ))}

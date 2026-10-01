@@ -3,6 +3,7 @@
 // Each company:
 //   logo      → small tile next to the company name (version B)
 //   title     → shown in the list at the top
+//   modes     → badges for the kind of role: 'IC', 'Mgmt' or both
 //   headline  → the large line in the company's section
 //   position  → the grey line under the headline
 //   summary   → one or more paragraphs
@@ -35,10 +36,11 @@ export const companies = [
     id: 'brightwave',
     logo: '/work/logos/brightwave.svg',
     name: 'Brightwave',
-    title: 'Head of Design, Founding Designer',
+    title: 'Head of Design',
+    modes: ['IC'],
     years: '2025–now',
     headline: 'Building 0-to-1 AI research platform for finance',
-    position: 'Head of Design, Founding Designer',
+    position: 'Head of Design',
     summary: [
       'AI products for finance teams: a research platform for private market due diligence, and Tounami, compliance-ready agent infrastructure.',
     ],
@@ -60,10 +62,11 @@ export const companies = [
     id: 'shopify',
     logo: '/work/logos/shopify.png',
     name: 'Shopify',
-    title: 'Product Design Manager, Design Lead',
+    title: 'Product Design Manager & Lead',
+    modes: ['Mgmt'],
     years: '2022–25',
     headline: 'Led design for Search and Selling Strategies',
-    position: 'Design lead & manager, Search & Selling Strategies',
+    position: 'Product Design Manager & Lead, Search & Selling Strategies',
     summary: [
       'I led design across Search and Selling Strategies, managing 7 designers across two teams and a broad portfolio spanning how buyers find products and how merchants grow their businesses with new product primitives.',
       'I helped take Shopify Search and Discovery app from MVP to a core platform used by millions of merchants, and brought products like subscriptions, bundles, and pre-orders onto better interoperability, and a consistent quality bar. I also led key parts of Shopify’s app ecosystem in admin, from discovery to installation to management.',
@@ -89,6 +92,7 @@ export const companies = [
     logo: '/work/logos/n26.png',
     name: 'N26',
     title: 'Head of Design, Engagement and US',
+    modes: ['IC', 'Mgmt'],
     years: '2018–2022',
     headline: 'Grew the team from 6 to 13 and launched in the US',
     position: 'Head of Design, Engagement and US',
@@ -113,6 +117,7 @@ export const companies = [
     logo: '/work/logos/ideo.png',
     name: 'IDEO',
     title: 'Project Lead',
+    modes: ['IC'],
     years: '[Years]',
     headline: '[One line on the work at IDEO]',
     position: 'Project Lead',

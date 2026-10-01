@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { intro, companies } from './content.js'
 import Gallery from './Gallery.jsx'
 import ResumeButton from './ResumeButton.jsx'
+import Badges from './Badges.jsx'
 
 function SkimToggle({ on, onChange }) {
   return (
@@ -15,7 +16,7 @@ function SkimToggle({ on, onChange }) {
 function Company({ c }) {
   return (
     <section className="company" id={c.id} aria-labelledby={`${c.id}-headline`}>
-      <p className="company-name">{c.name}</p>
+      <p className="company-name">{c.name}<Badges modes={c.modes} /></p>
       <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
       <p className="meta">{c.position} · <span className="nowrap">{c.years}</span></p>
 
@@ -58,7 +59,7 @@ export default function WorkPage() {
             <li key={c.id}>
               <a href={`#${c.id}`}>
                 <span className="toc-name">{c.name}</span>
-                <span className="toc-title">{c.title}</span>
+                <span className="toc-title">{c.title}<Badges modes={c.modes} /></span>
                 <span className="toc-years">{c.years}</span>
               </a>
             </li>
