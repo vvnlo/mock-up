@@ -154,6 +154,23 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 /* intro: one column, like version A */
 .band--intro { padding: 84px 40px; }
 .band--intro .toc { margin-top: 42px; }
+
+/* resume button */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 42px;
+  padding: 11px 20px 11px 22px;
+  border: 2px solid var(--rule);
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.cta:hover { border-color: var(--ink); }
+.cta svg { transition: transform 0.25s var(--ease-out); }
+.cta:hover svg { transform: translate(2px, -2px); }
 /* company name and logo sit above both columns, so the headline and paragraphs share a top line */
 .band-label { grid-column: 1 / -1; margin-bottom: 7px; }
 .band-right { max-width: 480px; }
@@ -213,6 +230,7 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   .band--text { grid-template-columns: minmax(0, 1fr); padding: 40px 20px; }
   .band--intro { padding: 40px 20px; }
   .band--intro .toc { margin-top: 28px; }
+  .cta { margin-top: 28px; }
   .toc li { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0; }
   .toc li .muted:not(.years) { grid-column: 1 / -1; grid-row: 2; }
   .band--gallery { height: clamp(240px, 70vw, 360px); }
