@@ -190,7 +190,7 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
   gap: 0 16px;
   padding-block: 9px;
 }
-.toc li > a { grid-area: name; }
+.toc li > a, .toc-name { grid-area: name; white-space: nowrap; }
 .toc-title { grid-area: title; }
 .badges.toc-badges { grid-area: badges; margin-left: 0; justify-self: end; align-self: center; }
 .toc li .years { grid-area: years; }

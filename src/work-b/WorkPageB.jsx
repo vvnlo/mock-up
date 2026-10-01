@@ -146,10 +146,17 @@ export default function WorkPageB() {
             <ol className="toc">
               {companies.map((c) => (
                 <li key={c.id}>
-                  <a href={`#${c.id}`}>
-                    <Label>{c.name}</Label>
-                    <Logo src={c.logo} />
-                  </a>
+                  {c.listOnly ? (
+                    <span className="toc-name">
+                      {c.name}
+                      <Logo src={c.logo} />
+                    </span>
+                  ) : (
+                    <a href={`#${c.id}`}>
+                      <Label>{c.name}</Label>
+                      <Logo src={c.logo} />
+                    </a>
+                  )}
                   <span className="muted toc-title">{c.title}</span>
                   <Badges modes={c.modes} className="toc-badges" />
                   <span className="muted years">{c.years}</span>
@@ -160,7 +167,7 @@ export default function WorkPageB() {
           </div>
         </section>
 
-        {companies.map((c) => <Company c={c} key={c.id} />)}
+        {companies.filter((c) => !c.listOnly).map((c) => <Company c={c} key={c.id} />)}
 
         <footer className="section footer detail">
             <p>

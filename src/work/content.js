@@ -4,6 +4,7 @@
 //   logo      → small tile next to the company name (version B)
 //   title     → shown in the list at the top
 //   modes     → badges for the kind of role: 'IC', 'Mgmt' or both
+//   listOnly  → true to show it in the list at the top without its own section (version B)
 //   headline  → the large line in the company's section
 //   position  → the grey line under the headline
 //   summary   → one or more paragraphs
@@ -124,6 +125,8 @@ export const companies = [
     summary: [
       '[A sentence or two on the kind of projects you led at IDEO and for whom.]',
     ],
+    // Listed under "Selected work" only: version B shows no section and no link for it.
+    listOnly: true,
     // No case studies or images yet: the case study line and gallery are hidden when these are empty.
     caseStudies: [],
     gallery: [],
