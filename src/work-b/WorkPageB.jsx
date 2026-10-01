@@ -138,6 +138,7 @@ export default function WorkPageB() {
             <span className="switch" aria-hidden="true" />
             30s read
           </button>
+          <span className="topbar-divider" aria-hidden="true" />
           <ThemeToggle />
         </div>
       </header>

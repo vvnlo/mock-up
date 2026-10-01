@@ -106,6 +106,7 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 }
 .brand .link-label::before { display: none; }
 .topbar-right { display: flex; align-items: center; gap: 16px; font-size: 13px; }
+.topbar-divider { width: 1px; height: 12px; background: var(--rule); }
 .topbar .icon-button { width: auto; color: var(--icon); }
 .topbar .icon-button:hover { color: var(--ink); }
 
