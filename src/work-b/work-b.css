@@ -21,11 +21,11 @@
     --ink: #ffffff;
     --muted: rgb(255 255 255 / 0.55);
     --icon: rgb(255 255 255 / 0.38);
-    --rule: rgb(255 255 255 / 0.12);
-    --link-rest: #1c1c1c;
-    --fill: #141414;
-    --tile-edge: rgb(255 255 255 / 0.08);
-    --placeholder: #141414;
+    --rule: rgb(255 255 255 / 0.2);
+    --link-rest: #3a3a3a;
+    --fill: #262626;
+    --tile-edge: rgb(255 255 255 / 0.1);
+    --placeholder: #1a1a1a;
   }
 }
 :root[data-theme='dark'] {
@@ -34,11 +34,11 @@
   --ink: #ffffff;
   --muted: rgb(255 255 255 / 0.55);
   --icon: rgb(255 255 255 / 0.38);
-  --rule: rgb(255 255 255 / 0.12);
-  --link-rest: #1c1c1c;
-  --fill: #141414;
-  --tile-edge: rgb(255 255 255 / 0.08);
-  --placeholder: #141414;
+  --rule: rgb(255 255 255 / 0.2);
+  --link-rest: #3a3a3a;
+  --fill: #262626;
+  --tile-edge: rgb(255 255 255 / 0.1);
+  --placeholder: #1a1a1a;
 }
 
 * { box-sizing: border-box; margin: 0; }
