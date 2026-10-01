@@ -186,6 +186,7 @@ export default function WorkPageB() {
               or on <a href={intro.linkedin}><Label>LinkedIn</Label></a> and{' '}
               <a href={intro.x}><Label>X</Label></a>.
             </p>
+            <span className="footer-year">2026</span>
         </footer>
       </main>
     </div>

@@ -182,6 +182,8 @@ a:hover .link-label::after, a:focus-visible .link-label::after { transform: scal
 
 /* footer: one line of contact details */
 .footer { padding: 160px 40px 48px; color: var(--muted); }
+.footer { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.footer-year { flex: none; font-variant-numeric: tabular-nums; }
 
 /* intro: one column, like version A */
 .band--intro { padding: 84px 40px; }
