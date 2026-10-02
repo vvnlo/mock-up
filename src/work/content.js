@@ -97,7 +97,8 @@ export const companies = [
     headline: 'Grew the team from 6 to 13 and launched in the US',
     position: 'Head of Design, Engagement and US',
     summary: [
-      'Led the overhaul of the app’s information architecture and the core money features that shaped N26: Spaces, Feed, Insights, Rules and Roundups.',
+      'I established the design function in our US office and drove N26’s 0-to-1 launch and expansion in the US.',
+      'I then led the overhaul of the app’s information architecture and the core money features that shaped N26: Spaces, Feed, Insights, Rules and Roundups. Along the way, I helped grow the design team through hypergrowth, including re-leveling the team.',
     ],
     caseStudies: [
       { title: 'Spaces', href: '#' },
