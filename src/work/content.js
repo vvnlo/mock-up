@@ -28,8 +28,8 @@ export const intro = {
   email: 'hello@vvnlo.com',
   linkedin: 'https://www.linkedin.com/in/lovivian/',
   x: 'https://x.com/loviv',
-  // Link for the "View resume" button. Replace with your resume URL.
-  resumeUrl: '#',
+  // Link for the "View resume" button (opens in a new tab).
+  resumeUrl: 'https://drive.google.com/file/d/1Wjk2rkfpfoivpaaKf0iDsahlDXKDkqN9/view',
 }
 
 export const companies = [
