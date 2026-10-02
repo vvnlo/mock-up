@@ -200,8 +200,8 @@ export default function WorkPageB() {
                 <a href={`mailto:${intro.email}`}><Label>{intro.email}</Label></a>
                 <CopyButton text={intro.email} />,
               </span>{' '}
-              or on <a href={intro.linkedin}><Label>LinkedIn</Label></a> and{' '}
-              <a href={intro.x}><Label>X</Label></a>.
+              or on <a href={intro.linkedin} target="_blank" rel="noopener noreferrer"><Label>LinkedIn</Label></a> and{' '}
+              <a href={intro.x} target="_blank" rel="noopener noreferrer"><Label>X</Label></a>.
             </p>
             <span className="footer-year">© 2026</span>
         </footer>
