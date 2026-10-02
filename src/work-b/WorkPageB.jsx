@@ -96,10 +96,20 @@ function Company({ c }) {
           <h2 className="headline" id={`${c.id}-headline`}>{c.headline}</h2>
           <p className="muted meta">{c.position} · <Badges modes={c.modes} className="meta-badges" /> · <span className="nowrap">{c.years}</span></p>
         </div>
-        <div className="band-right about detail">
-          {c.summary.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
+        <div className="band-right about">
+          {c.summary.map((para, i) => {
+            if (i > 0) return <p className="detail" key={para.slice(0, 24)}>{para}</p>
+            // The first sentence stays visible in the 30s read; the rest fades.
+            const [, lead = para, rest = ''] = para.match(/^(.+?[.!?])(\s.*)?$/s) || []
+            return (
+              <p key={para.slice(0, 24)}>
+                {lead}
+                {rest && <span className="detail">{rest}</span>}
+              </p>
+            )
+          })}
           {c.caseStudies.length > 0 && (
-            <p>
+            <p className="detail">
               {c.caseStudies.length > 1 ? 'Case studies' : 'Case study'}:{' '}
               {c.caseStudies.map((cs, i) => (
                 <span key={cs.title}>
