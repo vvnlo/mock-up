@@ -103,13 +103,19 @@ function Company({ c }) {
               {c.caseStudies.length > 1 ? 'Case studies' : 'Case study'}:{' '}
               {c.caseStudies.map((cs, i) => (
                 <span key={cs.title}>
-                  <a className="case-link" href={cs.href} aria-label={`${cs.title} (password protected)`}>
-                    <Label>{cs.title}</Label>
-                    <svg className="lock" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
-                      <rect x="2" y="5.5" width="8" height="5.5" rx="1" />
-                      <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" />
-                    </svg>
-                  </a>
+                  {cs.open ? (
+                    <a className="case-link" href={cs.href} target="_blank" rel="noopener noreferrer">
+                      <Label>{cs.title}</Label>
+                    </a>
+                  ) : (
+                    <a className="case-link" href={cs.href} aria-label={`${cs.title} (password protected)`}>
+                      <Label>{cs.title}</Label>
+                      <svg className="lock" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
+                        <rect x="2" y="5.5" width="8" height="5.5" rx="1" />
+                        <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" />
+                      </svg>
+                    </a>
+                  )}
                   {i < c.caseStudies.length - 1 ? ', ' : '.'}
                 </span>
               ))}

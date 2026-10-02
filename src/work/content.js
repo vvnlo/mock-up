@@ -66,7 +66,7 @@ export const companies = [
     modes: ['Mgmt'],
     years: '2022–25',
     headline: 'Led design for Search and Selling Strategies',
-    position: 'Product Design Manager & Lead, Search & Selling Strategies',
+    position: 'Product Design Manager & Lead',
     summary: [
       'I led design across Search and Selling Strategies, managing 7 designers across two teams and a broad portfolio spanning how buyers find products and how merchants grow their businesses with new product primitives.',
       'I helped take Shopify Search and Discovery app from MVP to a core platform used by millions of merchants, and brought products like subscriptions, bundles, and pre-orders onto better interoperability, and a consistent quality bar. I also led key parts of Shopify’s app ecosystem in admin, from discovery to installation to management.',
@@ -102,6 +102,8 @@ export const companies = [
     caseStudies: [
       { title: 'Spaces', href: '#' },
       { title: 'N26 US', href: '#' },
+      // A public PDF: opens in a new tab with no lock icon.
+      { title: 'Management toolkit', href: '/work/n26/management-toolkit.pdf', open: true },
     ],
     gallery: [
       { size: 'large', ratio: '2000 / 1250', src: '/work/n26/1.webp', title: 'N26 home screen on a phone' },
