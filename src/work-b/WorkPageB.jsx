@@ -89,7 +89,11 @@ function Company({ c }) {
     <section className="section" id={c.id} aria-labelledby={`${c.id}-headline`}>
       <div className="band band--text">
         <p className="greeting band-label">
-          {c.name}
+          {c.url ? (
+            <a href={c.url} target="_blank" rel="noopener noreferrer"><Label>{c.name}</Label></a>
+          ) : (
+            c.name
+          )}
           <Logo src={c.logo} />
         </p>
         <div className="band-left">
@@ -170,17 +174,10 @@ export default function WorkPageB() {
             <ol className="toc">
               {companies.map((c) => (
                 <li key={c.id}>
-                  {c.listOnly ? (
-                    <span className="toc-name">
-                      {c.name}
-                      <Logo src={c.logo} />
-                    </span>
-                  ) : (
-                    <a href={`#${c.id}`}>
-                      <Label>{c.name}</Label>
-                      <Logo src={c.logo} />
-                    </a>
-                  )}
+                  <span className="toc-name">
+                    {c.name}
+                    <Logo src={c.logo} />
+                  </span>
                   <span className="muted toc-title">{c.title}</span>
                   <Badges modes={c.modes} className="toc-badges" />
                   <span className="muted years">{c.years}</span>

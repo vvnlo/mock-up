@@ -2,6 +2,7 @@
 //
 // Each company:
 //   logo      → small tile next to the company name (version B)
+//   url       → the company name in its section links here (opens in a new tab)
 //   title     → shown in the list at the top
 //   modes     → badges for the kind of role: 'IC', 'Mgmt' or both
 //   listOnly  → true to show it in the list at the top without its own section (version B)
@@ -35,6 +36,7 @@ export const intro = {
 export const companies = [
   {
     id: 'brightwave',
+    url: 'https://www.brightwave.io/blog',
     logo: '/work/logos/brightwave.svg',
     name: 'Brightwave',
     title: 'Head of Design',
@@ -61,6 +63,7 @@ export const companies = [
   },
   {
     id: 'shopify',
+    url: 'https://www.shopify.com/',
     logo: '/work/logos/shopify.png',
     name: 'Shopify',
     title: 'Product Design Manager & Lead',
@@ -90,6 +93,7 @@ export const companies = [
   },
   {
     id: 'n26',
+    url: 'https://n26.com/en-eu',
     logo: '/work/logos/n26.png',
     name: 'N26',
     title: 'Head of Design, Engagement and US',
