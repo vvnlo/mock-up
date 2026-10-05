@@ -25,7 +25,7 @@ export const intro = {
   bioUrl: 'https://vvnlo.com/',
   title: 'Selected work',
   blurb:
-    'My career has moved fluidly between IC and management, shaping how I lead and how I design. The work below spans hands-on product craft, team leadership, and product direction.',
+    'I’ve moved between hands-on IC and design management roles throughout my career. That range has made me a stronger design leader: equally comfortable getting into the details of a product, shaping its direction, and building the teams and systems that help great work scale.',
   email: 'hello@vvnlo.com',
   linkedin: 'https://www.linkedin.com/in/lovivian/',
   x: 'https://x.com/loviv',
