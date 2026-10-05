@@ -190,7 +190,7 @@ export default function WorkPageB() {
 
         {companies.filter((c) => !c.listOnly).map((c) => <Company c={c} key={c.id} />)}
 
-        <footer className="section footer detail">
+        <footer className="section footer">
             <p>
               You can reach me at{' '}
               <span className="nowrap">
