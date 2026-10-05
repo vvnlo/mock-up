@@ -69,7 +69,7 @@ export const companies = [
     headline: 'Led design for Search and Selling Strategies',
     position: 'Product Design Manager & Lead',
     summary: [
-      'I led design across Search and Selling Strategies, managing 7 designers across two teams and a broad portfolio spanning how buyers find products and how merchants grow their businesses with new product primitives.',
+      'I led a team of product designers across two portfolios: Search & Discovery, helping merchants optimize product discovery and conversion; and Selling Strategies, building new ways for merchants to sell.',
       'I helped take Shopify Search and Discovery app from MVP to a core platform used by millions of merchants, and brought products like subscriptions, bundles, and pre-orders onto better interoperability, and a consistent quality bar. I also led key parts of Shopify’s app ecosystem in admin, from discovery to installation to management.',
     ],
     caseStudies: [
