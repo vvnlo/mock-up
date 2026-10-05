@@ -170,7 +170,7 @@ export default function WorkPageB() {
         <section className="section" aria-labelledby="page-title">
           <div className="band band--intro">
             <h1 className="headline" id="page-title">{intro.title}</h1>
-            <p className="blurb">{intro.blurb}</p>
+            <p className="blurb detail">{intro.blurb}</p>
             <ol className="toc">
               {companies.map((c) => (
                 <li key={c.id}>
