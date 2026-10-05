@@ -109,7 +109,9 @@ export const companies = [
     ],
     gallery: [
       { size: 'large', ratio: '2000 / 1250', src: '/work/n26/1.webp', title: 'N26 home screen on a phone' },
-      { size: 'large', ratio: '2337 / 1250', src: '/work/n26/2.webp', title: 'Home feed, Rules, bill splitting and Statistics' },
+      { size: 'large', ratio: '2000 / 1250', src: '/work/n26/bento-1.webp', title: 'Home, transaction details and a payment notification' },
+      { size: 'large', ratio: '2000 / 1250', src: '/work/n26/bento-2.mp4', title: 'Splitting a bill evenly or by custom amounts' },
+      { size: 'large', ratio: '2000 / 1250', src: '/work/n26/bento-3.mp4', title: 'Statistics with recurring payments, budget and balance overview' },
       { size: 'large', ratio: '2000 / 1250', src: '/work/n26/3.webp', title: 'Spaces, before and after' },
       { size: 'large', ratio: '2000 / 1250', src: '/work/n26/4.webp', title: 'N26 US onboarding' },
       { size: 'large', ratio: '2000 / 1250', src: '/work/n26/5.webp', title: 'Actions, transfers, MoneyBeam and ATM finder' },
