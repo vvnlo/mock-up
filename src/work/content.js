@@ -39,11 +39,11 @@ export const companies = [
     url: 'https://www.brightwave.io/blog',
     logo: '/work/logos/brightwave.svg',
     name: 'Brightwave',
-    title: 'Head of Design',
+    title: 'Head of Design & Founding Designer',
     modes: ['IC'],
     years: '2025–now',
     headline: 'Building 0-to-1 AI research platform for finance',
-    position: 'Head of Design',
+    position: 'Head of Design & Founding Designer',
     summary: [
       'As Brightwave’s founding designer, I helped transform an early AI research product into a multiplayer workspace for private markets.',
       'I redesigned the experience around how deal teams actually work: messy data rooms, parallel analysis, shared outputs, and a high bar for accuracy. Along the way, I helped shape product direction, establish new patterns for agentic UX, and build the systems that let a lean team ship quickly and consistently.',
