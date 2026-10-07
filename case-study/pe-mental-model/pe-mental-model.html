@@ -75,6 +75,9 @@
                  border-top: 2px solid var(--ink-3); border-right: 2px solid var(--ink-3); transform: translateY(-50%) rotate(45deg); }
   .r-assoc { grid-column: 1 / 4; }
   .r-vp { grid-column: 2 / 4; }
+  .roles-flow { grid-template-columns: 400px 280px 400px 280px 400px; column-gap: 0; margin-top: 24px; }
+  .roles-flow .r-assoc { grid-column: 1 / 6; }
+  .roles-flow .r-vp { grid-column: 3 / 6; }
 
   /* Slide 2 — dependencies */
   .flow { position: relative; flex: 1; display: grid; grid-template-columns: 400px 280px 400px 280px 400px;
@@ -275,7 +278,10 @@
     </div>
   </div>
 
-  <div class="insight"><b>Key UX insight</b><span>This is <u>not</u> a linear pipeline. IC pushback (WF3) reopens the model (WF2), and new data in WF2 can invalidate the revenue build (WF1) — loops happen constantly.</span></div>
+  <div class="roles roles-flow">
+    <div class="role r-assoc"><b>Associate</b> execution and analysis</div>
+    <div class="role r-vp"><b>VP</b> synthesis, stress-testing and narrative</div>
+  </div>
 </section>
 
 <!-- ============ SLIDE 3 — MENTAL MODELS ============ -->
