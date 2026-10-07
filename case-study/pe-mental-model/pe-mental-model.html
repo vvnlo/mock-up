@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PE Deal Team Mental Model</title>
+<style>
+  :root {
+    --ink: #14161a;
+    --ink-2: #4a505c;
+    --ink-3: #8a909c;
+    --line: #e3e5ea;
+    --bg: #ffffff;
+    --surface: #f6f7f9;
+
+    --wf1: #2f6fdb; --wf1-tint: #eef3fd;
+    --wf2: #6a4bd6; --wf2-tint: #f2effc;
+    --wf3: #d4513d; --wf3-tint: #fcf0ee;
+
+    --xl: #1d7a46;  --xl-bg: #e5f4ec;
+    --ppt: #c2442f; --ppt-bg: #fbe9e5;
+    --mix: #a8610a; --mix-bg: #fdf0dc;
+    --ciq: #1f6f8b; --ciq-bg: #e2f1f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #d9dce2; font-family: Inter, system-ui, sans-serif; color: var(--ink);
+         -webkit-font-smoothing: antialiased; font-feature-settings: "ss01", "cv11"; }
+  .slide { width: 1920px; height: 1080px; background: var(--bg); padding: 72px 80px 64px;
+           position: relative; overflow: hidden; margin: 0 auto 40px; display: flex; flex-direction: column; }
+  @media print { body { background: none; } .slide { margin: 0; page-break-after: always; } }
+
+  /* Header */
+  .hd { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; }
+  .eyebrow { font-size: 15px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+  h1 { font-family: "Inter Display", Inter, sans-serif; font-size: 48px; font-weight: 700; letter-spacing: -.02em; line-height: 1.05; }
+  .sub { font-size: 21px; color: var(--ink-2); margin-top: 12px; }
+  .keys { display: flex; gap: 10px; align-items: center; }
+  .keys .lbl { font-size: 14px; color: var(--ink-3); font-weight: 500; margin-right: 4px; }
+
+  /* Tool chips */
+  .chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 14px;
+          font-size: 14px; font-weight: 600; white-space: nowrap; }
+  .xl  { color: var(--xl);  background: var(--xl-bg); }
+  .ppt { color: var(--ppt); background: var(--ppt-bg); }
+  .mix { color: var(--mix); background: var(--mix-bg); }
+  .ciq { color: var(--ciq); background: var(--ciq-bg); }
+
+  /* Slide 1 — workflows */
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; flex: 1; }
+  .wf { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+  .wf-top { padding: 22px 28px 20px; background: var(--tint); border-top: 6px solid var(--acc); }
+  .wf-n { font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--acc); }
+  .wf-t { font-family: "Inter Display", Inter, sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -.01em; margin-top: 6px; }
+  .jtbd { font-size: 19px; line-height: 1.4; color: var(--ink); margin-top: 14px; font-weight: 500; }
+  .jtbd b { color: var(--acc); font-weight: 700; }
+  .meta { padding: 14px 28px; display: grid; grid-template-columns: 64px 1fr; row-gap: 10px; column-gap: 12px;
+          font-size: 16px; line-height: 1.4; border-bottom: 1px solid var(--line); }
+  .meta dt { color: var(--ink-3); font-weight: 600; }
+  .meta dd { color: var(--ink-2); }
+  .tasks { list-style: none; padding: 8px 28px 16px; }
+  .tasks li { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 10px;
+              padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .tasks li:last-child { border-bottom: 0; }
+  .tasks .i { font-size: 14px; font-weight: 700; color: var(--acc); font-variant-numeric: tabular-nums; }
+  .tasks .t { font-size: 17px; font-weight: 600; line-height: 1.25; }
+  .tasks .o { display: block; font-size: 14.5px; color: var(--ink-3); font-weight: 400; margin-top: 2px; }
+  .w1 { --acc: var(--wf1); --tint: var(--wf1-tint); }
+  .w2 { --acc: var(--wf2); --tint: var(--wf2-tint); }
+  .w3 { --acc: var(--wf3); --tint: var(--wf3-tint); }
+
+  .roles { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 32px; row-gap: 8px; margin-top: 18px; }
+  .role { height: 36px; border-radius: 18px; display: flex; align-items: center; padding: 0 20px;
+          font-size: 16px; color: var(--ink-2); background: var(--surface); position: relative; }
+  .role b { color: var(--ink); margin-right: 8px; }
+  .role::after { content: ""; position: absolute; right: 16px; top: 50%; width: 10px; height: 10px;
+                 border-top: 2px solid var(--ink-3); border-right: 2px solid var(--ink-3); transform: translateY(-50%) rotate(45deg); }
+  .r-assoc { grid-column: 1 / 4; }
+  .r-vp { grid-column: 2 / 4; }
+
+  /* Slide 2 — dependencies */
+  .flow { position: relative; flex: 1; display: grid; grid-template-columns: 400px 280px 400px 280px 400px;
+          grid-template-rows: 112px auto 1fr; }
+  .loops { position: absolute; left: 0; top: 0; width: 1760px; height: 112px; overflow: visible; }
+  .loops text { font-family: Inter, sans-serif; font-size: 15px; font-weight: 600; fill: var(--ink-2); }
+  .col-h { grid-row: 2; padding: 18px 24px; border-radius: 14px 14px 0 0; background: var(--acc); color: #fff; }
+  .col-h .wf-n { color: rgba(255,255,255,.75); }
+  .col-h .nm { font-size: 22px; font-weight: 700; margin-top: 4px; }
+  .col-b { grid-row: 3; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 14px 14px; padding: 10px 24px; }
+  .col-b .cap, .hand .cap { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); padding: 12px 0 6px; }
+  .items { list-style: none; }
+  .items li { font-size: 20px; padding: 15px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: baseline; }
+  .items li:last-child { border-bottom: 0; }
+  .items li::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--acc); flex: none; transform: translateY(-2px); }
+  .hand { grid-row: 2 / 4; padding: 0 18px; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 76px; }
+  .hand .arrow { height: 2px; background: var(--ink-3); position: relative; margin: 0 -22px 6px; }
+  .hand .arrow::after { content: ""; position: absolute; right: 0; top: -5px; width: 10px; height: 10px;
+                        border-top: 2px solid var(--ink-3); border-right: 2px solid var(--ink-3); transform: rotate(45deg); }
+  .hand .items li { font-size: 16px; color: var(--ink-2); padding: 12px 0; }
+  .hand .items li::before { background: none; border: 1.5px solid var(--acc); }
+  .insight { margin-top: 28px; display: flex; gap: 20px; align-items: center; background: var(--ink); color: #fff;
+             border-radius: 14px; padding: 22px 28px; font-size: 20px; line-height: 1.45; }
+  .insight b { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #f5c451; flex: none; }
+
+  /* Slide 3 — mental models */
+  .mm { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+  .mm .wf-top { padding-bottom: 26px; }
+  .q { font-family: "Inter Display", Inter, sans-serif; font-size: 27px; font-weight: 700; line-height: 1.25;
+       letter-spacing: -.01em; margin-top: 14px; color: var(--ink); }
+  .q::before { content: "“"; color: var(--acc); }
+  .q::after { content: "”"; color: var(--acc); }
+  .facets { padding: 6px 28px 20px; flex: 1; display: flex; flex-direction: column; }
+  .facet { padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .facet:last-child { border-bottom: 0; }
+  .facet h4 { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--acc); margin-bottom: 6px; }
+  .facet p { font-size: 19px; line-height: 1.48; color: var(--ink-2); }
+  .facet.pain { margin-top: auto; background: var(--surface); margin-left: -12px; margin-right: -12px; padding: 16px 12px; border-radius: 10px; border: 0; }
+  .facet.pain h4 { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ============ SLIDE 1 — WORKFLOWS ============ -->
+<section class="slide" id="s1">
+  <header class="hd">
+    <div>
+      <div class="eyebrow">Research synthesis</div>
+      <h1>Private Equity Deal Team — Mental Model</h1>
+      <div class="sub">Three core workflows: Customer Analysis · Financial Modelling · IC Documentation</div>
+    </div>
+    <div class="keys">
+      <span class="lbl">Tools</span>
+      <span class="chip xl">Excel</span><span class="chip ppt">PowerPoint</span>
+      <span class="chip mix">Excel → PPT</span><span class="chip ciq">Excel + CapIQ</span>
+    </div>
+  </header>
+
+  <div class="cols">
+    <article class="wf w1">
+      <div class="wf-top">
+        <div class="wf-n">Workflow 1</div>
+        <div class="wf-t">Customer Data Analysis</div>
+        <p class="jtbd"><b>Job to be done:</b> Pressure-test revenue durability &amp; cash-flow predictability</p>
+      </div>
+      <dl class="meta">
+        <dt>Who</dt><dd>Associates + VPs · Diligence phase (4–6 wks)</dd>
+        <dt>Shape</dt><dd>Iterative — pull, clean, analyse, recut. Very spreadsheet-heavy.</dd>
+      </dl>
+      <ol class="tasks">
+        <li><span class="i">01</span><span class="t">Cohort &amp; Retention<span class="o">Bar chart</span></span><span class="chip xl">Excel</span></li>
+        <li><span class="i">02</span><span class="t">Revenue Concentration<span class="o">Bar chart + table</span></span><span class="chip xl">Excel</span></li>
+        <li><span class="i">03</span><span class="t">Unit Economics (CAC / LTV)<span class="o">Model tab</span></span><span class="chip xl">Excel</span></li>
+        <li><span class="i">04</span><span class="t">Churn Attribution<span class="o">Bar chart</span></span><span class="chip mix">Excel → PPT</span></li>
+        <li><span class="i">05</span><span class="t">NRR / Expansion<span class="o">Bar chart</span></span><span class="chip xl">Excel</span></li>
+        <li><span class="i">06</span><span class="t">Customer Segmentation<span class="o">Segment matrix</span></span><span class="chip ppt">PowerPoint</span></li>
+      </ol>
+    </article>
+
+    <article class="wf w2">
+      <div class="wf-top">
+        <div class="wf-n">Workflow 2</div>
+        <div class="wf-t">Financial Modelling &amp; Valuation</div>
+        <p class="jtbd"><b>Job to be done:</b> Determine max entry price &amp; debt capacity to hit the return hurdle</p>
+      </div>
+      <dl class="meta">
+        <dt>Who</dt><dd>Analysts + Associates build · VPs review &amp; stress-test</dd>
+        <dt>Shape</dt><dd>Non-linear, highly iterative — model updates as diligence sharpens assumptions.</dd>
+      </dl>
+      <ol class="tasks">
+        <li><span class="i">01</span><span class="t">3-Statement Model<span class="o">Linked P&amp;L / BS / CF</span></span><span class="chip xl">Excel</span></li>
+        <li><span class="i">02</span><span class="t">Revenue Build<span class="o">Bottom-up by product / geo / customer</span></span><span class="chip xl">Excel</span></li>
+        <li><span class="i">03</span><span class="t">EBITDA Bridge<span class="o">Normalised waterfall chart</span></span><span class="chip xl">Excel</span></li>
+        <li><span class="i">04</span><span class="t">Debt Structuring / LBO<span class="o">IRR / MOIC sensitivity table</span></span><span class="chip xl">Excel</span></li>
+        <li><span class="i">05</span><span class="t">Valuation Analysis<span class="o">Comps table + DCF</span></span><span class="chip ciq">Excel + CapIQ</span></li>
+        <li><span class="i">06</span><span class="t">Scenario Analysis<span class="o">Tornado chart</span></span><span class="chip xl">Excel</span></li>
+        <li><span class="i">07</span><span class="t">Working Capital<span class="o">WC peg schedule</span></span><span class="chip xl">Excel</span></li>
+      </ol>
+    </article>
+
+    <article class="wf w3">
+      <div class="wf-top">
+        <div class="wf-n">Workflow 3</div>
+        <div class="wf-t">IC Slide Generation</div>
+        <p class="jtbd"><b>Job to be done:</b> Synthesise all diligence into a compelling go / no-go recommendation for IC</p>
+      </div>
+      <dl class="meta">
+        <dt>Who</dt><dd>VP / Principal authors · MD / Partner reviews</dd>
+        <dt>Shape</dt><dd>Linear assembly, highly collaborative — many contributors, many revision rounds.</dd>
+      </dl>
+      <ol class="tasks">
+        <li><span class="i">01</span><span class="t">Investment Thesis<span class="o">Narrative slide</span></span><span class="chip ppt">PowerPoint</span></li>
+        <li><span class="i">02</span><span class="t">Market &amp; Competitive<span class="o">TAM in table</span></span><span class="chip ppt">PowerPoint</span></li>
+        <li><span class="i">03</span><span class="t">Financial Summary<span class="o">Charts embedded</span></span><span class="chip ppt">PowerPoint</span></li>
+        <li><span class="i">04</span><span class="t">Diligence Summary<span class="o">Risk table with mitigants</span></span><span class="chip ppt">PowerPoint</span></li>
+        <li><span class="i">05</span><span class="t">Deal Structure &amp; Returns<span class="o">Sources &amp; uses</span></span><span class="chip ppt">PowerPoint</span></li>
+        <li><span class="i">06</span><span class="t">Risk &amp; Value Creation<span class="o">Risk register</span></span><span class="chip ppt">PowerPoint</span></li>
+      </ol>
+    </article>
+  </div>
+
+  <div class="roles">
+    <div class="role r-assoc"><b>Associate</b> execution and analysis</div>
+    <div class="role r-vp"><b>VP</b> synthesis, stress-testing and narrative</div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 2 — DEPENDENCIES ============ -->
+<section class="slide" id="s2">
+  <header class="hd">
+    <div>
+      <div class="eyebrow">Workflow dependencies</div>
+      <h1>How each workflow feeds the next</h1>
+      <div class="sub">Outputs become inputs downstream — and late findings loop back upstream.</div>
+    </div>
+  </header>
+
+  <div class="flow">
+    <svg class="loops" viewBox="0 0 1760 112">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+          <path d="M1 1 L9 5 L1 9" fill="none" stroke="#14161a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <!-- WF3 -> WF2 -->
+      <path d="M1640 108 V54 Q1640 30 1616 30 H984 Q960 30 960 54 V100" fill="none" stroke="#14161a" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#ah)"/>
+      <rect x="1170" y="16" width="260" height="28" rx="14" fill="#fff"/>
+      <text x="1300" y="35" text-anchor="middle">↺ IC pushback reopens the model</text>
+      <!-- WF2 -> WF1 -->
+      <path d="M800 108 V54 Q800 30 776 30 H224 Q200 30 200 54 V100" fill="none" stroke="#14161a" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#ah)"/>
+      <rect x="330" y="16" width="340" height="28" rx="14" fill="#fff"/>
+      <text x="500" y="35" text-anchor="middle">↺ New data invalidates the revenue build</text>
+    </svg>
+
+    <div class="col-h w1" style="grid-column:1"><div class="wf-n">Workflow 1</div><div class="nm">Customer Data Analysis</div></div>
+    <div class="col-b w1" style="grid-column:1">
+      <div class="cap">Outputs</div>
+      <ul class="items">
+        <li>Customer cohort table</li><li>Revenue by segment</li><li>NRR % + churn trend</li>
+        <li>LTV / CAC model</li><li>Top-10 concentration table</li>
+      </ul>
+    </div>
+
+    <div class="hand w1" style="grid-column:2">
+      <div class="arrow"></div>
+      <div class="cap">Becomes input to WF2</div>
+      <ul class="items">
+        <li>Revenue build assumptions</li><li>Downside churn assumption</li>
+        <li>Margin build via LTV / CAC</li><li>Concentration risk flag</li>
+      </ul>
+    </div>
+
+    <div class="col-h w2" style="grid-column:3"><div class="wf-n">Workflow 2</div><div class="nm">Financial Modelling</div></div>
+    <div class="col-b w2" style="grid-column:3">
+      <div class="cap">Outputs</div>
+      <ul class="items">
+        <li>Full LBO model (Excel)</li><li>IRR / MOIC sensitivity table</li><li>EBITDA bridge waterfall</li>
+        <li>Comps table (EV / EBITDA)</li><li>Scenario / tornado chart</li><li>Sources &amp; uses table</li>
+      </ul>
+    </div>
+
+    <div class="hand w2" style="grid-column:4">
+      <div class="arrow"></div>
+      <div class="cap">Becomes input to WF3</div>
+      <ul class="items">
+        <li>Financial summary slides</li><li>Returns scenario (IC slide 6)</li><li>Deal structure / S&amp;U table</li>
+        <li>Valuation anchor for thesis</li><li>Downside case for risk slide</li>
+      </ul>
+    </div>
+
+    <div class="col-h w3" style="grid-column:5"><div class="wf-n">Workflow 3</div><div class="nm">IC Slide Generation</div></div>
+    <div class="col-b w3" style="grid-column:5">
+      <div class="cap">Outputs</div>
+      <ul class="items">
+        <li>IC memo / deck (PPT)</li><li>Risk register table</li><li>Go / no-go IC decision</li>
+        <li>100-day plan</li><li>LOI / deal terms</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="insight"><b>Key UX insight</b><span>This is <u>not</u> a linear pipeline. IC pushback (WF3) reopens the model (WF2), and new data in WF2 can invalidate the revenue build (WF1) — loops happen constantly.</span></div>
+</section>
+
+<!-- ============ SLIDE 3 — MENTAL MODELS ============ -->
+<section class="slide" id="s3">
+  <header class="hd">
+    <div>
+      <div class="eyebrow">How they think</div>
+      <h1>The question behind each workflow</h1>
+      <div class="sub">What deal-team members are really trying to answer — and where it hurts.</div>
+    </div>
+  </header>
+
+  <div class="cols">
+    <article class="mm w1">
+      <div class="wf-top">
+        <div class="wf-n">Customer Analysis</div>
+        <p class="q">Is this revenue real and durable?</p>
+      </div>
+      <div class="facets">
+        <div class="facet"><h4>Approach</h4><p>Like a prosecutor: assume the revenue is fake until they can prove otherwise.</p></div>
+        <div class="facet"><h4>Key anxiety</h4><p>Is churn accelerating? Is the top customer leaving? Are margins real per segment?</p></div>
+        <div class="facet"><h4>Decision gate</h4><p>NRR &gt; 100%? LTV / CAC &gt; 3×? If yes, the revenue thesis holds. If not, reprice or walk.</p></div>
+        <div class="facet pain"><h4>Biggest pain</h4><p>Data is never clean. Getting customer data from target CFOs takes days; shaping it into usable cohorts takes more.</p></div>
+      </div>
+    </article>
+
+    <article class="mm w2">
+      <div class="wf-top">
+        <div class="wf-n">Financial Modelling</div>
+        <p class="q">What price can I pay and still hit my return hurdle?</p>
+      </div>
+      <div class="facets">
+        <div class="facet"><h4>Approach</h4><p>Work backwards from a target IRR (typically 20–25%+) and solve for the maximum justifiable entry multiple.</p></div>
+        <div class="facet"><h4>A living document</h4><p>Every diligence finding — customer churn, margin normalisation — flows back into the model.</p></div>
+        <div class="facet"><h4>Key anxiety</h4><p>Am I buying at peak margins? Is EBITDA normalised correctly? Will covenants hold in the downside?</p></div>
+        <div class="facet pain"><h4>Biggest pain</h4><p>Managing model versions across a team, linking assumptions across tabs, and rebuilding mid-diligence when numbers restate.</p></div>
+      </div>
+    </article>
+
+    <article class="mm w3">
+      <div class="wf-top">
+        <div class="wf-n">IC Documentation</div>
+        <p class="q">Can I get the IC to say yes?</p>
+      </div>
+      <div class="facets">
+        <div class="facet"><h4>Approach</h4><p>Audience-first: what will the IC ask, and which risks will they push back on hardest?</p></div>
+        <div class="facet"><h4>Politics</h4><p>The thesis slide is the most political — partners debate framing, word choice and narrative angle.</p></div>
+        <div class="facet"><h4>What IC cares about</h4><p>The deck runs 30–60 pages, but the IC only cares about the thesis, key risks and the return scenario.</p></div>
+        <div class="facet pain"><h4>Biggest pain</h4><p>Last-mile assembly — stitching Excel charts into PowerPoint, version chaos, and constant late-stage number updates.</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+</body>
+</html>
